@@ -4,7 +4,7 @@
 
 # Site
 title: xd's blogs
-subtitle: "xd's blogs"
+subtitle: "Welcome come to xd's blogs"
 description: "xd's blogs"
 keywords:
 author: 向东
@@ -40,7 +40,10 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
+post_asset_folder: false
+marked:
+  prependRoot: true
+  postAsset: true
 relative_link: false
 future: true
 syntax_highlighter: highlight.js
