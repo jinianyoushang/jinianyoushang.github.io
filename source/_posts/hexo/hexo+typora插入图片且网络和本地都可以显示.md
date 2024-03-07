@@ -1,11 +1,12 @@
 ---
 title: hexo插入图片且网络和本地都可以显示
 typora-root-url: hexo+typora插入图片且网络和本地都可以显示
-date: 2024-03-06 17:40:20
 tags:
-- hexo 插入图片
+  - hexo 插入图片
 categories:
-- hexo
+  - hexo
+abbrlink: 21241
+date: 2024-03-06 17:40:20
 ---
 
 ## hexo+typora插入图片且网络和本地都可以显示
@@ -41,6 +42,15 @@ typora-root-url 指定了 typora 把哪里当做图片搜索的根目录，就�
 因为使用的是相对路径，hexo 也能很好识别。如果在 hexo 的 scaffolds 下修改 Markdown 模板就可以让 hexo 自动为你填写 typora-root-url 了
 
 注意复制后删除图片前多余的`/`，比如`![](/image.jpg)`不对，应该是`![](image.jpg)`
+
+同时也要打开`_config.yml`
+
+```
+post_asset_folder: true
+marked:
+  prependRoot: true
+  postAsset: true
+```
 
 举个例子（post.md）：
 

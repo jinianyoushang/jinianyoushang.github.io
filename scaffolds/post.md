@@ -2,7 +2,7 @@
 title: {{ title }}
 typora-root-url: {{ title }}
 date: {{ date }}
-updated: 
+cover: 
 tags: 
 - {{ tags }}
 categories: 

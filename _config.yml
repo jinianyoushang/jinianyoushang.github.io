@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: xd's blogs
-subtitle: "Welcome come to xd's blogs"
-description: "xd's blogs"
+title: xd's blog
+subtitle: "Welcome come to xd's blog"
+description: "xd's blog"
 keywords:
 author: 向东
 language: zh-CN  # 指定语言，会影响主题显示的语言，按需修改
@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://jinianyoushang.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -40,7 +40,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 marked:
   prependRoot: true
   postAsset: true
@@ -99,7 +99,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: fluid
+theme: butterfly # fluid
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -109,3 +109,8 @@ deploy:
   branch: main
   token: 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
 
+# search
+search:
+  path: search.xml
+  field: post
+  content: true

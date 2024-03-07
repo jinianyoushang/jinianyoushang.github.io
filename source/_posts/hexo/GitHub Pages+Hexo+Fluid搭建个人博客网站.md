@@ -1,17 +1,18 @@
 ---
-title: GitHub Pages+Hexo+next搭建个人博客网站
-typora-root-url: GitHub Pages+Hexo+next搭建个人博客网站
-date: 2024-03-06 21:17
-updated: 
-tags: 
-- githubpage
-- hexo
-- next
-categories: 
-- hexo 
+title: GitHub Pages+Hexo+Fluid搭建个人博客网站
+typora-root-url: GitHub Pages+Hexo+Fluid搭建个人博客网站
+date: '2024-03-06 21:17'
+tags:
+  - githubpage
+  - hexo
+  - next
+categories:
+  - hexo
+abbrlink: 41067
+updated:
 ---
 
-## GitHub Pages+Hexo+next搭建个人博客网站
+## GitHub Pages+Hexo+Fluid搭建个人博客网站
 
 本文介绍如何使用GitHub Pages + Hexo搭建个人博客网站，完全免费，所有内容本人亲测，绝对可用。
 
@@ -171,7 +172,7 @@ hexo g -d
 hexo s
 ```
 
-浏览器访问 http://localhost:4000，`Fluid`主题风格页面如下
+浏览器访问 http://localhost:4000 ，`Fluid`主题风格页面如下
 
 ![请添加图片描述](watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973216615825.png)
 
@@ -435,6 +436,12 @@ https://jinianyoushang.github.io/
 ## 参考
 
 [GitHub Pages + Hexo搭建个人博客网站，史上最全教程_hexo博客-CSDN博客](https://blog.csdn.net/yaorongke/article/details/119089190)
+
+[Butterfly 安裝文檔(一) 快速開始 | Butterfly](https://butterfly.js.org/posts/21cfbf15/#安裝)
+
+[基于 Hexo 从零开始搭建个人博客（五） | 唐志远 (fe32.top)](https://fe32.top/articles/hexo1605/#Inject)
+
+[基于 Hexo 键入搜索功能 | 唐志远 (fe32.top)](https://fe32.top/articles/hexo1607/#Local-search)
 
 https://console.leancloud.cn/
 
