@@ -362,8 +362,8 @@ rightside_item_order:
 
 # MathJax
 mathjax:
-  enable: false
-  per_page: false
+  enable: true
+  per_page: true
 
 # KaTeX
 katex:
@@ -654,15 +654,16 @@ category_ui: # 留空或 index
 tag_ui: # 留空或 index
 
 # Stretches the lines so that each line has equal width（文字向兩側對齊，對最後一行無效）
-text_align_justify: false
+text_align_justify: true
 
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: RGB(247,249,254)
+# background: RGB(247,249,254)
+background: url(/img/default.jpg)
 
 # Footer Background
-footer_bg: false
+footer_bg: RGBA(247,249,254,0.15)
 
 # Add mask to header or footer (为 header 或 footer 添加黑色半透遮罩)
 mask:
@@ -881,7 +882,7 @@ snackbar:
 
 # https://instant.page/
 # prefetch (預加載)
-instantpage: false
+instantpage: true
 
 # https://github.com/vinta/pangu.js
 # Insert a space between Chinese character and English character (中英文之間添加空格)

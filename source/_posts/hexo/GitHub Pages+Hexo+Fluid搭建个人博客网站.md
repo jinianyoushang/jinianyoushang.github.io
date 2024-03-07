@@ -437,6 +437,8 @@ https://jinianyoushang.github.io/
 
 [GitHub Pages + Hexo搭建个人博客网站，史上最全教程_hexo博客-CSDN博客](https://blog.csdn.net/yaorongke/article/details/119089190)
 
+[Butterfly - A Simple and Card UI Design theme for Hexo](https://butterfly.js.org/)
+
 [Butterfly 安裝文檔(一) 快速開始 | Butterfly](https://butterfly.js.org/posts/21cfbf15/#安裝)
 
 [基于 Hexo 从零开始搭建个人博客（五） | 唐志远 (fe32.top)](https://fe32.top/articles/hexo1605/#Inject)
