@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>加快访问 GitHub 的速度</title>
+      <link href="/posts/a8afb3d9/"/>
+      <url>/posts/a8afb3d9/</url>
+      
+        <content type="html"><![CDATA[<p>随着开源项目的日益流行，越来越多的人选择在 GitHub 上托管和协作代码。然而，对于中国用户来说，由于<a href="https://cloud.baidu.com/product/et.html">网络</a>环境和地理位置的原因，访问 GitHub 可能会遇到速度慢的问题。本文将介绍几种解决方案来加快访问 GitHub 的速度。</p><h2 id="一、使用-GitHub-镜像"><a href="#一、使用-GitHub-镜像" class="headerlink" title="一、使用 GitHub 镜像"></a>一、使用 GitHub 镜像</h2><p>GitHub 镜像站是另一种加速访问 GitHub 的方式。镜像站会将 GitHub 的内容复制到本地，并提供了与 GitHub 相同的 API 服务。这样，用户就可以通过镜像站来访问 GitHub，避免了跨国网络传输的延迟。常用的 GitHub 镜像站包括：</p><ol><li>中国科学院计算机网络信息中心提供的 GitHub 镜像站（<a href="http://mirror.github.com">http://mirror.github.com</a>/)</li><li>清华大学提供的 TUNA Mirror（<a href="https://mirror.tuna.tsinghua.edu.cn/">https://mirror.tuna.tsinghua.edu.cn/</a>使用镜像站的步骤很简单，只需要在克隆或下载代码时将 URL 更换为对应的镜像站地址即可。</li></ol><h2 id="二、利用代理服务器"><a href="#二、利用代理服务器" class="headerlink" title="二、利用代理服务器"></a>二、利用代理服务器</h2><p>   代理服务器可以帮助用户绕过网络瓶颈，提高访问速度。有许多可用的代理服务器可供选择，例如 SOCKS5 代理和 HTTP 代理。在使用代理服务器时，只需将网络连接的代理地址设置为可用的代理服务器地址，即可通过代理服务器访问 GitHub。</p><h2 id="三、优化网络环境"><a href="#三、优化网络环境" class="headerlink" title="三、优化网络环境"></a>三、优化网络环境</h2><p>   优化网络环境可以从多个方面入手，包括网络配置、路由器设置等。例如，在 Windows 系统中，可以通过修改 hosts 文件来指定特定的 IP 地址对应 GitHub 的<a href="https://cloud.baidu.com/product/bcd.html">域名</a>，从而加快访问速度。此外，更换更快速、更稳定的路由器和网络连接方式也能提高访问速度。</p><h2 id="四、使用-VPN-或其他网络加速工具"><a href="#四、使用-VPN-或其他网络加速工具" class="headerlink" title="四、使用 VPN 或其他网络加速工具"></a>四、使用 VPN 或其他网络加速工具</h2><p> VPN（虚拟私人网络）和其他网络加速工具可以帮助用户提高网络访问速度。VPN 可以将用户连接到更近的服务器或更快的网络环境，从而加快访问速度。一些知名的 VPN 服务提供商包括 ExpressVPN、NordVPN 和 Surfshark。此外，还有一些专门针对访问 GitHub 进行优化的工具，如 GitMate、Gitee Pro 等。</p><p>需要注意的是，使用 VPN 或其他网络加速工具可能会带来额外的<a href="https://cloud.baidu.com/solution/security/soc.html">安全</a>风险。因此，在选择服务提供商时，请确保其具有较好的声誉和安全性。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>   访问 GitHub 速度慢的问题对于许多<a href="https://cloud.baidu.com/product/xly.html">开发者</a>来说是常见的困扰。本文介绍了四种解决方案来解决这个问题：使用 GitHub 镜像、利用代理服务器、优化网络环境和使用 VPN 或其他网络加速工具。这些方法中的每一种都有其特点和适用场景，用户可以根据自己的需求选择合适的方法来提高访问速度。同时，也需要注意安全风险并谨慎选择服务提供商</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux cpu性能测试</title>
+      <link href="/posts/31cd68fa/"/>
+      <url>/posts/31cd68fa/</url>
+      
+        <content type="html"><![CDATA[<h2 id="CPU压测命令"><a href="#CPU压测命令" class="headerlink" title="CPU压测命令"></a>CPU压测命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sysbench cpu --cpu-max-prime=20000 --threads=8 run</span><br><span class="line">sysbench cpu --cpu-max-prime=20000 --threads=1 run  #默认是单线程</span><br></pre></td></tr></table></figure><h5 id="8核心-13700-ubuntu虚拟机"><a href="#8核心-13700-ubuntu虚拟机" class="headerlink" title="8核心 13700  ubuntu虚拟机"></a>8核心 13700  ubuntu虚拟机</h5><p>多核110598</p><p>单核13824</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">110598-8核心</span><br><span class="line"></span><br><span class="line">sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)</span><br><span class="line"></span><br><span class="line">Running the test with following options:</span><br><span class="line">Number of threads: 8</span><br><span class="line">Initializing random number generator from current time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Prime numbers limit: 20000</span><br><span class="line"></span><br><span class="line">Initializing worker threads...</span><br><span class="line"></span><br><span class="line">Threads started!</span><br><span class="line"></span><br><span class="line">CPU speed:</span><br><span class="line">    events per second: 11058.04</span><br><span class="line"></span><br><span class="line">General statistics:</span><br><span class="line">    total time:                          10.0007s</span><br><span class="line">    total number of events:              110598</span><br><span class="line"></span><br><span class="line">Latency (ms):</span><br><span class="line">         min:                                    0.60</span><br><span class="line">         avg:                                    0.72</span><br><span class="line">         max:                                    6.90</span><br><span class="line">         95th percentile:                        0.81</span><br><span class="line">         sum:                                79972.90</span><br><span class="line"></span><br><span class="line">Threads fairness:</span><br><span class="line">    events (avg/stddev):           13824.7500/89.70</span><br><span class="line">    execution time (avg/stddev):   9.9966/0.00</span><br></pre></td></tr></table></figure><h5 id="jecson-4核心arm"><a href="#jecson-4核心arm" class="headerlink" title="jecson 4核心arm"></a>jecson 4核心arm</h5><p>4核心18395</p><p>单核 2299</p><p>可以看出13700 的8个大核心是jecson的性能的5-10倍</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://zhuanlan.zhihu.com/p/56889337">linux sysbench: CPU性能测试详解 - 知乎 (zhihu.com)</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> 性能测试 </tag>
+            
+            <tag> jecson </tag>
+            
+            <tag> 13700 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux和windows共享文件夹</title>
+      <link href="/posts/a059173d/"/>
+      <url>/posts/a059173d/</url>
+      
+        <content type="html"><![CDATA[<h3 id="ubuntu访问windows"><a href="#ubuntu访问windows" class="headerlink" title="ubuntu访问windows"></a>ubuntu访问windows</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mount -t cifs //10.170.27.210/ ~/share -o username=&#x27;***@qq.com&#x27;,password=&#x27;***&#x27;,vers=2.0</span><br><span class="line"></span><br><span class="line">sudo busybox  mount -t cifs //10.170.27.210/topographic_map ~/share -o username=***@qq.com,password=***,vers=2.0</span><br></pre></td></tr></table></figure><h3 id="windows访问ubuntu"><a href="#windows访问ubuntu" class="headerlink" title="windows访问ubuntu"></a>windows访问ubuntu</h3><h4 id="确认系统中安装samba"><a href="#确认系统中安装samba" class="headerlink" title="确认系统中安装samba"></a>确认系统中安装samba</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install samba</span><br></pre></td></tr></table></figure><h4 id="新建用户"><a href="#新建用户" class="headerlink" title="新建用户"></a>新建用户</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd xdsmb -g  6000</span><br><span class="line">sudo useradd  xdsmb -u 6000 -g 6000 -s /sbin/nologin -d /dev/null</span><br></pre></td></tr></table></figure><h4 id="设置你的账户samba密码"><a href="#设置你的账户samba密码" class="headerlink" title="设置你的账户samba密码"></a>设置你的账户samba密码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo touch /etc/samba/smbpasswd</span><br><span class="line">sudo smbpasswd -a xdsmb    #usr 表示你的用户名</span><br></pre></td></tr></table></figure><p>然后按照提示输入密码就可以了。</p><p>密码 <em>*</em></p><h4 id="将你的用户添加到sambashare用户组中"><a href="#将你的用户添加到sambashare用户组中" class="headerlink" title="将你的用户添加到sambashare用户组中"></a>将你的用户添加到sambashare用户组中</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser xdsmb sambashare</span><br></pre></td></tr></table></figure><h4 id="具体共享文件方法"><a href="#具体共享文件方法" class="headerlink" title="具体共享文件方法"></a>具体共享文件方法</h4><p>右击你想共享的文件夹，点击本地网络共享，然后点击共享文件夹就可以了。</p><h4 id="怎么在Windows中访问这个共享文件夹"><a href="#怎么在Windows中访问这个共享文件夹" class="headerlink" title="怎么在Windows中访问这个共享文件夹"></a>怎么在Windows中访问这个共享文件夹</h4><p>方法跟Windows访问Windows是一样的，按Windows+R，然后输入</p><h4 id="命令行配置共享文件夹"><a href="#命令行配置共享文件夹" class="headerlink" title="命令行配置共享文件夹"></a>命令行配置共享文件夹</h4><p><a href="https://blog.csdn.net/lantian6/article/details/107250008">ubuntu命令行配置文件夹共享_重启ubuntu共享问价夹命令-CSDN博客</a></p><h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><h5 id="Ubuntu挂载nfs文件系统报错：mount-mnt-nfs-bad-option-for-several-filesystems-e-g-nfs-cifs-you-might-need-a-sbin-mount-helper-program-。"><a href="#Ubuntu挂载nfs文件系统报错：mount-mnt-nfs-bad-option-for-several-filesystems-e-g-nfs-cifs-you-might-need-a-sbin-mount-helper-program-。" class="headerlink" title="Ubuntu挂载nfs文件系统报错：mount: /mnt/nfs: bad option; for several filesystems (e.g. nfs, cifs) you might need a /sbin/mount. helper program.。"></a><a href="https://so.csdn.net/so/search?q=Ubuntu&amp;spm=1001.2101.3001.7020">Ubuntu</a>挂载nfs文件系统报错：mount: /mnt/nfs: bad option; for several filesystems (e.g. nfs, cifs) you might need a /sbin/mount.<type> helper program.。</h5><p><a href="https://blog.csdn.net/weixin_43782998/article/details/109788521">高版本Ubuntu挂载nfs文件系统报错：mount: /mnt/nfs: bad option； for several filesystems (e.g. nfs, cifs)_bad option; for several filesystems (e.g. nfs, cif-CSDN博客</a></p><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://blog.csdn.net/rangfei/article/details/124225799#:~:text=3.1 Ubuntu 下设置共享目录 1 对要共享的目录右击 -&gt; Local Network,2 选择Share this folder 3 安装共享服务 GUI方式安装 提示安装samba包">Ubuntu：与Windows共享文件夹_ubuntu访问windows共享文件夹-CSDN博客</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> windows </tag>
+            
+            <tag> 共享文件夹 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux修改环境变量</title>
+      <link href="/posts/e0ce2883/"/>
+      <url>/posts/e0ce2883/</url>
+      
+        <content type="html"><![CDATA[<p>要将内容添加到 Linux 环境变量中，可以通过以下几种方法进行操作：</p><ol><li><p><strong>使用 export 命令：</strong> 在终端中执行以下命令，将内容添加到当前会话的环境变量中：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> VARIABLE_NAME=<span class="string">&quot;value&quot;</span></span><br><span class="line"></span><br><span class="line">将 `VARIABLE_NAME` 替换为要添加的环境变量的名称，将 `<span class="string">&quot;value&quot;</span>` 替换为要设置的值。</span><br><span class="line">例如，要将 `/path/to/directory` 添加到 `PATH` 环境变量中，可以执行以下命令：</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/path/to/directory:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line"></span><br><span class="line">这将把 `/path/to/directory` 添加到 `PATH` 变量的开头，保留原有的 `PATH` 值。</span><br><span class="line">请注意，此方法仅在当前会话中有效，关闭终端后会失效。</span><br></pre></td></tr></table></figure></li><li><p><strong>修改用户的 .bashrc 或 .bash_profile 文件：</strong> 如果要将内容添加到特定用户的环境变量中，并在每次登录时自动应用，可以编辑用户的 <code>.bashrc</code> 或 <code>.bash_profile</code> 文件。这些文件位于用户的主目录下。</p><p>打开终端，并使用文本编辑器（如 <code>vi</code> 或 <code>nano</code>）打开 <code>.bashrc</code> 或 <code>.bash_profile</code> 文件：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.bashrc</span><br><span class="line">在文件的末尾添加类似下面的行：</span><br><span class="line"><span class="built_in">export</span> PATH=/home/book/cmake-3.26.0-rc6-linux-x86_64/bin:/home/cs18/vcpkg:<span class="variable">$PATH</span></span><br><span class="line">保存文件并退出编辑器。</span><br><span class="line">重新启动终端会话或执行以下命令使更改生效：</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line">这样，添加的环境变量将在每次登录时自动应用。</span><br></pre></td></tr></table></figure></li><li><p><strong>修改全局的 /etc/environment 文件：</strong> 如果要在整个系统范围内添加环境变量，可以编辑 <code>/etc/environment</code> 文件（需要管理员权限）。</p><p>打开终端，并使用管理员权限打开 <code>/etc/environment</code> 文件：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/environment</span><br><span class="line">在文件中添加类似下面的行：</span><br><span class="line">PATH=<span class="string">&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/cs18/vcpkg&quot;</span></span><br><span class="line">保存文件并退出编辑器。</span><br><span class="line">重新启动系统或注销并重新登录用户，以使更改生效。</span><br></pre></td></tr></table></figure></li></ol><p>请根据您的需求选择适当的方法，并根据需要设置相应的环境变量。请注意，添加环境变量后，它们将在适当的上下文中可用，并对相关的应用程序生效。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> 环境变量 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>生成 SSH 密钥（windows+liunx）</title>
+      <link href="/posts/e253486a/"/>
+      <url>/posts/e253486a/</url>
+      
+        <content type="html"><![CDATA[<h1 id="生成-SSH-密钥（windows-liunx）"><a href="#生成-SSH-密钥（windows-liunx）" class="headerlink" title="生成 SSH 密钥（windows+liunx）"></a>生成 SSH 密钥（windows+liunx）</h1><h2 id="要在-Windows-10-上生成-SSH-密钥，您可以按照以下步骤操作："><a href="#要在-Windows-10-上生成-SSH-密钥，您可以按照以下步骤操作：" class="headerlink" title="要在 Windows 10 上生成 SSH 密钥，您可以按照以下步骤操作："></a><strong>要在 Windows 10 上生成 SSH 密钥，您可以按照以下步骤操作：</strong></h2><p>1.打开 PowerShell（或者按下 Windows + X 并选择 “Windows PowerShell”）；</p><p>2.在 PowerShell 中输入以下命令来生成 SSH 密钥：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure><p>3.输入您要保存密钥文件的路径和名称。例如：C:\Users\YourName.ssh\id_rsa。您可以选择保留默认名称，因为它已经被 SSH 所识别（id_rsa）；</p><p>4.在弹出的窗口中输入密码，或者直接敲击回车键选择不设置密码；</p><p>5.这个时候，您会得到一个公共密钥（id_rsa.pub）和一个私有密钥（id_rsa）。</p><p>现在您已经成功地生成了 SSH 密钥对。公钥是要提供给远程服务器的，私钥则要保留在本地，并加以保护。</p><h2 id="在-Linux-上生成-SSH-密钥的步骤与在-Windows-上类似。您可以按照以下步骤操作："><a href="#在-Linux-上生成-SSH-密钥的步骤与在-Windows-上类似。您可以按照以下步骤操作：" class="headerlink" title="在 Linux 上生成 SSH 密钥的步骤与在 Windows 上类似。您可以按照以下步骤操作："></a><strong>在 Linux 上生成 SSH 密钥的步骤与在 Windows 上类似。您可以按照以下步骤操作：</strong></h2><p>1.打开终端（或者按下 Ctrl + Alt + T）；</p><p>2.输入以下命令来生成 SSH 密钥：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure><p>3.输入您要保存密钥文件的路径和名称，或者直接敲击回车键选择默认值，例如：/home/YourName/.ssh/id_rsa；</p><p>4.在弹出的窗口中输入密码，或者直接敲击回车键选择不设置密码；</p><p>5.这个时候，您会得到一个公共密钥（id_rsa.pub）和一个私有密钥（id_rsa）。</p><p>现在您已经成功地生成了 SSH 密钥对。公钥是要提供给远程服务器的，私钥则要保留在本地，并加以保护。另外，如果您想要让 SSH 代理管理您的密钥，您还需要在本地配置 SSH 代理。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ssh </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ssh </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ACG</title>
+      <link href="/posts/5665/"/>
+      <url>/posts/5665/</url>
+      
+        <content type="html"><![CDATA[<div class="gallery-group-main"><figure class="gallery-group">  <img class="gallery-group-img no-lightbox" src='https://bu.dusays.com/2022/11/26/638228a86935a.webp' alt="Group Image Gallery">  <figcaption>  <div class="gallery-group-name">ACG</div>  <p>那些二次元的故事</p>  <a href='/gallery/ACG'></a>  </figcaption>  </figure>  </div>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>综合测试</title>
+      <link href="/posts/39097/"/>
+      <url>/posts/39097/</url>
+      
+        <content type="html"><![CDATA[<h3 id="测试代码显示"><a href="#测试代码显示" class="headerlink" title="测试代码显示"></a>测试代码显示</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Buffer2D&lt;Float3&gt; <span class="title">Denoiser::Filter</span><span class="params">(<span class="type">const</span> FrameInfo &amp;frameInfo)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> height = frameInfo.m_beauty.m_height;</span><br><span class="line">    <span class="type">int</span> width = frameInfo.m_beauty.m_width;</span><br><span class="line">    Buffer2D&lt;Float3&gt; filteredImage = <span class="built_in">CreateBuffer2D</span>&lt;Float3&gt;(width, height);</span><br><span class="line">    <span class="type">int</span> kernelRadius = <span class="number">32</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> omp parallel for</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> y = <span class="number">0</span>; y &lt; height; y++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">0</span>; x &lt; width; x++) &#123;</span><br><span class="line">            <span class="comment">// <span class="doctag">TODO:</span> Joint bilateral filter</span></span><br><span class="line">            <span class="comment">// filteredImage(x, y) = frameInfo.m_beauty(x, y);</span></span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> x_start = std::<span class="built_in">max</span>(<span class="number">0</span>, x - kernelRadius);</span><br><span class="line">            <span class="type">int</span> x_end = std::<span class="built_in">min</span>(width - <span class="number">1</span>, x + kernelRadius);</span><br><span class="line">            <span class="type">int</span> y_start = std::<span class="built_in">max</span>(<span class="number">0</span>, y - kernelRadius);</span><br><span class="line">            <span class="type">int</span> y_end = std::<span class="built_in">min</span>(height - <span class="number">1</span>, y + kernelRadius);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">auto</span> center_postion = frameInfo.<span class="built_in">m_position</span>(x, y);</span><br><span class="line">            <span class="keyword">auto</span> center_normal = frameInfo.<span class="built_in">m_normal</span>(x, y);</span><br><span class="line">            <span class="keyword">auto</span> center_color = frameInfo.<span class="built_in">m_beauty</span>(x, y);</span><br><span class="line"></span><br><span class="line">            Float3 final_color;</span><br><span class="line">            <span class="keyword">auto</span> total_weight = <span class="number">.0</span>f;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> m = x_start; m &lt;= x_end; m++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> n = y_start; n &lt;= y_end; n++) &#123;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">auto</span> postion = frameInfo.<span class="built_in">m_position</span>(m, n);</span><br><span class="line">                    <span class="keyword">auto</span> normal = frameInfo.<span class="built_in">m_normal</span>(m, n);</span><br><span class="line">                    <span class="keyword">auto</span> color = frameInfo.<span class="built_in">m_beauty</span>(m, n);</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">auto</span> d_position = <span class="built_in">SqrDistance</span>(center_postion, postion) /</span><br><span class="line">                                      (<span class="number">2.0f</span> * m_sigmaCoord * m_sigmaCoord);</span><br><span class="line">                    <span class="keyword">auto</span> d_color = <span class="built_in">SqrDistance</span>(center_color, color) /</span><br><span class="line">                                   (<span class="number">2.0f</span> * m_sigmaColor * m_sigmaColor);</span><br><span class="line">                    <span class="keyword">auto</span> d_normal = <span class="built_in">SafeAcos</span>(<span class="built_in">Dot</span>(center_normal, normal));</span><br><span class="line">                    d_normal *= d_normal;</span><br><span class="line">                    d_normal / (<span class="number">2.0f</span> * m_sigmaNormal * m_sigmaNormal);</span><br><span class="line"></span><br><span class="line">                    <span class="type">float</span> d_plane = <span class="number">.0</span>f;</span><br><span class="line">                    <span class="keyword">if</span> (d_position &gt; <span class="number">0.f</span>) &#123;</span><br><span class="line">                        d_plane = <span class="built_in">Dot</span>(center_normal, <span class="built_in">Normalize</span>(postion - center_postion));</span><br><span class="line">                    &#125;</span><br><span class="line">                    d_plane *= d_plane;</span><br><span class="line">                    d_plane /= (<span class="number">2.0f</span> * m_sigmaPlane * m_sigmaPlane);</span><br><span class="line"></span><br><span class="line">                    <span class="type">float</span> weight = std::<span class="built_in">exp</span>(-d_plane - d_position - d_color - d_normal);</span><br><span class="line">                    total_weight += weight;</span><br><span class="line">                    final_color += color * weight;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">filteredImage</span>(x, y) = final_color / total_weight;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> filteredImage;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="测试公式"><a href="#测试公式" class="headerlink" title="测试公式"></a>测试公式</h3><script type="math/tex; mode=display">a+b=c</script><h3 id="测试图片"><a href="#测试图片" class="headerlink" title="测试图片"></a>测试图片</h3><p>hexo图片引用方式有三种,推荐使用第二种方式，并在开头加上 <code>typora-root-url:&#123;title&#125;</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img test.png 图片引用方法一 %&#125;</span><br><span class="line"></span><br><span class="line">![图片引用方法二](test.png)</span><br><span class="line"></span><br><span class="line">![图片引用方法三](./images/test.png)</span><br></pre></td></tr></table></figure><p>如下</p><img src="/posts/39097/test.png" class="" title="图片引用方法一"><p><img src="test.png" alt="图片引用方法二"></p><p><img src="%25E6%25B5%258B%25E8%25AF%2595%25E5%259B%25BE%25E7%2589%2587/test.png" alt="图片引用方法三"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> test </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>firstcpp</title>
+      <link href="/posts/44e603ce/"/>
+      <url>/posts/44e603ce/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> c++ </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GitHub Pages+Hexo+Fluid搭建个人博客网站</title>
+      <link href="/posts/41067/"/>
+      <url>/posts/41067/</url>
+      
+        <content type="html"><![CDATA[<h2 id="GitHub-Pages-Hexo-Fluid搭建个人博客网站"><a href="#GitHub-Pages-Hexo-Fluid搭建个人博客网站" class="headerlink" title="GitHub Pages+Hexo+Fluid搭建个人博客网站"></a>GitHub Pages+Hexo+Fluid搭建个人博客网站</h2><p>本文介绍如何使用GitHub Pages + Hexo搭建个人博客网站，完全免费，所有内容本人亲测，绝对可用。</p><h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><ol><li><h4 id="GitHub账号"><a href="#GitHub账号" class="headerlink" title="GitHub账号"></a>GitHub账号</h4><p>需要有一个GitHub账号，没有的话到 官网 申请一个。<br>注册很简单，不懂的话可以参考 GitHub申请账号</p></li><li><h4 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h4><p>在自己电脑上安装好Git，hexo部署到GitHub时要用。<br>网上找篇教程或者参考 Git安装(Windows)</p></li><li><h4 id="安装NodeJS"><a href="#安装NodeJS" class="headerlink" title="安装NodeJS"></a>安装NodeJS</h4><p>在自己电脑上安装好NodeJS，Hexo是基于NodeJS编写的，所以需要安装NodeJS和npm工具。<br>网上找篇教程或者参考 NodeJS安装及配置(Windows)</p></li></ol><h2 id="二、创建仓库"><a href="#二、创建仓库" class="headerlink" title="二、创建仓库"></a>二、创建仓库</h2><p>  在<code>GitHub</code>上创建一个新的代码仓库用于保存我们的网页。</p><p>  点击<code>Your repositories</code>，进入仓库页面。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70.png" alt="请添加图片描述"></p><p>点击<code>New</code>按钮，进入仓库创建页面。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-17097312466013.png" alt="请添加图片描述"></p><p>填写仓库名，格式必须为<code>&lt;用户名&gt;.github.io</code>，然后点击<code>Create repository</code>。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-17097312600136.png" alt="请添加图片描述"></p><p>点击<code>creating a new file</code>创建一个新文件，作为我们网站的主页。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-17097312711059.png" alt="请添加图片描述"></p><p>浏览器中访问，展示成功。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973177563416.png" alt="请添加图片描述"></p><p>这里创建的网页是非常简陋的，只是为了演示下<code>GitHub Pages</code>的使用方式。</p><h2 id="三、安装Hexo"><a href="#三、安装Hexo" class="headerlink" title="三、安装Hexo"></a>三、安装Hexo</h2><p>我们采用Hexo来创建我们的博客网站，Hexo 是一个基于NodeJS的静态博客网站生成器，使用Hexo不需开发，只要进行一些必要的配置即可生成一个个性化的博客网站，非常方便。点击进入 官网。</p><p>安装 Hexo</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure><p>查看版本</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure><p>创建一个项目 hexo-blog 并初始化</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init hexo-blog</span><br><span class="line"><span class="built_in">cd</span> hexo-blog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure><p>本地启动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure><p><strong>浏览器访问 <a href="http://localhost:4000，页面默认主图风格如下">http://localhost:4000，页面默认主图风格如下</a></strong></p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973190888219.png" alt="请添加图片描述"></p><h2 id="四、更换主题"><a href="#四、更换主题" class="headerlink" title="四、更换主题"></a>四、更换主题</h2><p><code>Hexo</code> 默认的主题不太好看，不过官方提供了数百种主题供用户选择，可以根据个人喜好更换，官网主题点 <a href="https://hexo.io/themes/">这里</a> 查看。这里介绍两个主题的使用方法，<code>Next</code> 和 <code>Fluid</code>，个人比较喜欢<code>Fluid</code>，后面章节的功能也是以 <code>Fluid</code> 为基础进行讲解的。</p><h3 id="1-NexT-主题"><a href="#1-NexT-主题" class="headerlink" title="1. NexT 主题"></a>1. NexT 主题</h3><p><strong>安装主题</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd hexo-blog</span><br><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure><p><strong>使用 NexT 主题</strong></p><p>打开 _config.yml 文件，该文件为站点配置文件</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973199073122.png" alt="请添加图片描述"></p><p>将主题修改为 next</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure><p><strong>本地启动</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><h3 id="2-Fluid主题"><a href="#2-Fluid主题" class="headerlink" title="2. Fluid主题"></a>2. Fluid主题</h3><p>以下安装步骤摘自 <a href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid官网</a></p><p><strong>安装主题</strong></p><p>下载 <a href="https://github.com/fluid-dev/hexo-theme-fluid/releases">最新 release 版本</a> 解压到 <code>themes</code> 目录，并将解压出的文件夹重命名为 <code>fluid</code>。</p><p><strong>指定主题</strong></p><p>如下修改 <code>Hexo</code> 博客目录中的 <code>_config.yml</code>：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">theme: fluid  # 指定主题</span><br><span class="line">language: zh-CN  # 指定语言，会影响主题显示的语言，按需修改</span><br></pre></td></tr></table></figure><p><strong>创建「关于页」</strong></p><p>首次使用主题的「关于页」需要手动创建：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure><p>创建成功后，编辑博客目录下 <code>/source/about/index.md</code>，添加 <code>layout</code> 属性。</p><p>修改后的文件示例如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: about</span><br><span class="line">date: 2020-02-23 19:20:33</span><br><span class="line">layout: about</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">这里写关于页的正文，支持 Markdown, HTML</span><br></pre></td></tr></table></figure><p><strong>本地启动</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>浏览器访问 <a href="http://localhost:4000">http://localhost:4000</a> ，<code>Fluid</code>主题风格页面如下</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973216615825.png" alt="请添加图片描述"></p><h2 id="五、创建文章"><a href="#五、创建文章" class="headerlink" title="五、创建文章"></a>五、创建文章</h2><p>如下修改 Hexo 博客目录中的 <code>_config.yml</code>，打开这个配置是为了在生成文章的时候生成一个同名的资源目录用于存放图片文件。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure><p>执行如下命令创建一篇新文章，名为《测试文章》</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post 测试文章</span><br></pre></td></tr></table></figure><p>执行完成后在<code>source\_posts</code>目录下生成了一个md文件和一个同名的资源目录(用于存放图片)</p><p><img src="4d471824356e476e8c8e092caa453f8a.png" alt="请添加图片描述"></p><p>在资源目录<code>测试文章</code>中放一张图片 <code>test.png</code></p><p><img src="96a7534cb7a743438c553298b216b8b0.png" alt="请添加图片描述"></p><p>在<code>测试文章.md</code>中添加内容如下，演示了图片的三种引用方式。第一种为官方推荐用法，第二种为markdown语法，第三种和前两种图片存放位置不一样，是将图片放在<code>\source\images</code>目录下。这三种写法在md文件中图片是无法显示的，但是在页面上能正常显示。</p><p>图片的引入方式可参考官方文档 <a href="https://hexo.io/zh-cn/docs/asset-folders.html，有详细介绍。">https://hexo.io/zh-cn/docs/asset-folders.html，有详细介绍。</a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 测试文章</span><br><span class="line">date: 2021-06-10 16:35:20</span><br><span class="line">tags:</span><br><span class="line">- 原创</span><br><span class="line">categories:</span><br><span class="line">- Java</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">这是一篇测试文章</span><br><span class="line"></span><br><span class="line">&#123;% asset_img test.png 图片引用方法一 %&#125;</span><br><span class="line"></span><br><span class="line">![图片引用方法二](test.png)</span><br><span class="line"></span><br><span class="line">![图片引用方法三](images/test.png)</span><br></pre></td></tr></table></figure><p><strong>本地启动</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>浏览器访问 <a href="http://localhost:4000，页面如下，文章添加成功">http://localhost:4000，页面如下，文章添加成功</a></p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973235097232.png" alt="请添加图片描述"></p><h2 id="六、个性化页面展示"><a href="#六、个性化页面展示" class="headerlink" title="六、个性化页面展示"></a>六、个性化页面展示</h2><p>页面的标题等位置显示默认的文字，可以改下显示一些个性化的信息。</p><h3 id="1-浏览器tab页名称"><a href="#1-浏览器tab页名称" class="headerlink" title="1. 浏览器tab页名称"></a>1. 浏览器tab页名称</h3><p>修改根目录下 <code>_config.yml</code> 中的 <code>title</code> 字段。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973237506635.png" alt="请添加图片描述"></p><h3 id="2-博客标题"><a href="#2-博客标题" class="headerlink" title="2. 博客标题"></a>2. 博客标题</h3><p>主题目录 <code>themes\fluid</code> 下 <code>_config.yml</code> 中的 <code>blog_title</code> 字段。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973240546038.png" alt="请添加图片描述"></p><h3 id="3-主页正中间的文字"><a href="#3-主页正中间的文字" class="headerlink" title="3. 主页正中间的文字"></a>3. 主页正中间的文字</h3><p>主题目录 <code>themes\fluid</code> 下 <code>_config.yml</code> 中的 <code>text</code> 字段。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973242297441.png" alt="请添加图片描述"></p><p>修改好配置后，页面效果如下，可以看到现在显示的内容变成了我们的个人信息。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973243621044.png" alt="请添加图片描述"></p><h2 id="七、添加阅读量统计"><a href="#七、添加阅读量统计" class="headerlink" title="七、添加阅读量统计"></a>七、添加阅读量统计</h2><p><code>Fluid</code> 主题写好了统计阅读量的代码，但是缺少相应配置所以没有开启，需要借助三方服务来统计阅读量，这里是有 <code>Leancloud</code> 的免费服务来进行统计。</p><h3 id="1-申请LeanCloud账号并创建应用"><a href="#1-申请LeanCloud账号并创建应用" class="headerlink" title="1. 申请LeanCloud账号并创建应用"></a>1. 申请LeanCloud账号并创建应用</h3><p>进入 <a href="https://console.leancloud.cn/">官网</a> 注册账号</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973245991647.png" alt="请添加图片描述"></p><p>需实名认证，完成后才能使用各项服务</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973248355150.png" alt="请添加图片描述"></p><p>验证邮箱</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973249360553.png" alt="请添加图片描述"></p><p>创建应用，选择<code>开发版</code>即可，免费的</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973251024756.png" alt="请添加图片描述"></p><p>进入该应用的 <code>设置-&gt;应用凭证</code>，找到 <code>AppID</code> 和 <code>AppKey</code>，记录下来后面配置要用</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973252709559.png" alt="请添加图片描述"></p><h3 id="2-修改Fluid配置"><a href="#2-修改Fluid配置" class="headerlink" title="2. 修改Fluid配置"></a>2. 修改Fluid配置</h3><p>打开主题目录 <code>themes\fluid</code>下的 <code>_config.yml</code> 文件，修改如下配置</p><p><strong>单篇文章阅读量计数</strong></p><p>打开统计开关</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973254863762.png" alt="请添加图片描述"></p><p>配置 <code>leancloud</code>的 <code>app_id</code> 和 <code>app_key</code></p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973256435465.png" alt="请添加图片描述"></p><p>打开计数功能，统计来源改为 <code>leancloud</code></p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973257710768.png" alt="请添加图片描述"></p><p>页面效果</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973258722771.png" alt="请添加图片描述"></p><p>页面底部展示网站的 PV、UV 统计数</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973259582274.png" alt="请添加图片描述"></p><p>页面效果</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973260379677.png" alt="请添加图片描述"></p><h2 id="八、添加评论功能"><a href="#八、添加评论功能" class="headerlink" title="八、添加评论功能"></a>八、添加评论功能</h2><p>评论功能的代码已经写好了，只不过没有开启，需要修改一些配置</p><p>打开主题目录 <code>themes\fluid</code>下的 <code>_config.yml</code> 文件，修改如下配置</p><p>启用评论插件</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973263277980.png" alt="请添加图片描述"></p><p>配置 <code>LeanCloud</code> 的 <code>appId</code> 和 <code>appkey</code></p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973263969583.png" alt="请添加图片描述"></p><p>重新部署后，查看页面效果，评论功能已开启</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973265015086.png" alt="请添加图片描述"></p><p>部署在本地时评论无法提交，会报跨域问题，发布到 <code>GitHub Pages</code> 上之后课正常提交评论</p><h2 id="九、发布到GitHub-Pages"><a href="#九、发布到GitHub-Pages" class="headerlink" title="九、发布到GitHub Pages"></a>九、发布到GitHub Pages</h2><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><p>安装hexo-deployer-git</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure><p>修改根目录下的 <code>_config.yml</code>，配置 <code>GitHub</code> 相关信息</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/yaorongke/yaorongke.github.io.git</span><br><span class="line">  branch: main</span><br><span class="line">  token: ******************************</span><br></pre></td></tr></table></figure><p>其中 <code>token</code> 为 <code>GitHub</code> 的 <code>Personal access tokens</code>，获取方式如下图</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973269228189.png" alt="请添加图片描述"></p><p>部署到GitHub</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure><p>浏览器访问 <a href="https://yaorongke.github.io/">https://yaorongke.github.io/</a> ，部署成功</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973271472592.png" alt="请添加图片描述"></p><h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><p>直接将 <code>public</code> 目录中的文件和目录推送至 <code>GitHub</code> 仓库和分支中。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhb3JvbmdrZQ==,size_16,color_FFFFFF,t_70-170973272612995.png" alt="请添加图片描述"></p><h2 id="十、发布到自己服务器，Nginx代理"><a href="#十、发布到自己服务器，Nginx代理" class="headerlink" title="十、发布到自己服务器，Nginx代理"></a>十、发布到自己服务器，Nginx代理</h2><p>如果自己有服务器的话，也可以不使用 GitHub Pages，直接部署的自己的服务器上，通过 Nginx 进行代理，我这里有一个阿里云上的 CentOS 7 版的 Linux 服务器，演示下如何部署，步骤如下。</p><p>打开 hexo-blog 根目录下的 _config.yml，增加如下配置，这是因为把网站存放在了子目录中，要和 Nginx 配置中的 location /blog 路径一致。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root: /blog</span><br></pre></td></tr></table></figure><p><code>hexo-blog</code> 根目录下执行打包命令，打包好的文件在 <code>public</code> 目录下</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure><p>将<code>public</code> 目录下的文件复制到 <code>Linux</code> 服务器上的某个目录下，我的存放目录为</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/rkyao/fronted/hexo-blog</span><br></pre></td></tr></table></figure><p>修改 <code>Nginx</code> 配置文件，我的 <code>Nginx</code> 安装路径为 <code>/usr/local</code>，大家根据自己实际情况调整</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/conf</span><br><span class="line">vim nginx.conf</span><br><span class="line"># server节点下添加如下配置</span><br><span class="line">location /blog &#123;</span><br><span class="line">    alias  /opt/rkyao/fronted/hexo-blog;</span><br><span class="line">    index  index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>重启 <code>Nginx</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin</span><br><span class="line">./nginx -s reload</span><br></pre></td></tr></table></figure><p>访问博客</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://47.96.106.173/blog/</span><br></pre></td></tr></table></figure><h2 id="十一、最终效果展示"><a href="#十一、最终效果展示" class="headerlink" title="十一、最终效果展示"></a>十一、最终效果展示</h2><p>可访问如下地址查看</p><p><a href="https://jinianyoushang.github.io/">https://jinianyoushang.github.io/</a></p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/yaorongke/article/details/119089190">GitHub Pages + Hexo搭建个人博客网站，史上最全教程_hexo博客-CSDN博客</a></p><p><a href="https://butterfly.js.org/">Butterfly - A Simple and Card UI Design theme for Hexo</a></p><p><a href="https://butterfly.js.org/posts/21cfbf15/#安裝">Butterfly 安裝文檔(一) 快速開始 | Butterfly</a></p><p><a href="https://fe32.top/articles/hexo1605/#Inject">基于 Hexo 从零开始搭建个人博客（五） | 唐志远 (fe32.top)</a></p><p><a href="https://fe32.top/articles/hexo1607/#Local-search">基于 Hexo 键入搜索功能 | 唐志远 (fe32.top)</a></p><p><a href="https://console.leancloud.cn/">https://console.leancloud.cn/</a></p><p><a href="https://hexo.fluid-dev.com/docs/guide/#slogan-打字机">配置指南 | Hexo Fluid 用户手册 (fluid-dev.com)</a></p><p><a href="https://hexo.io/zh-cn/docs/asset-folders.html">资源文件夹 | Hexo</a></p><p><a href="https://connor-sun.github.io/posts/41255.html">Hexo+NexT+Typora【搭建记录&amp;使用指南】 | Connor (connor-sun.github.io)</a></p><p><a href="https://www.bilibili.com/video/BV16b4y1G7fo/?spm_id_from=333.337.search-card.all.click&amp;vd_source=0d5feab415814c73cb3f13d1f8e7642b">Hexo+Github：个人博客的搭建_哔哩哔哩_bilibili</a></p><p><a href="https://cloud.tencent.com/developer/article/1970544">Hexo + Typora + 开发Hexo插件 解决图片路径不一致-腾讯云开发者社区-腾讯云 (tencent.com)</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> githubpage </tag>
+            
+            <tag> hexo </tag>
+            
+            <tag> next </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo插入图片且网络和本地都可以显示</title>
+      <link href="/posts/21241/"/>
+      <url>/posts/21241/</url>
+      
+        <content type="html"><![CDATA[<h2 id="hexo-typora插入图片且网络和本地都可以显示"><a href="#hexo-typora插入图片且网络和本地都可以显示" class="headerlink" title="hexo+typora插入图片且网络和本地都可以显示"></a>hexo+typora插入图片且网络和本地都可以显示</h2><p>两种方法解决解决hexo插入本地图片</p><p>先hexo new “文章名”，把图片放入<code>_posts/文章名</code> 文件夹中</p><h3 id="第一种，使用官方引用图片方式"><a href="#第一种，使用官方引用图片方式" class="headerlink" title="第一种，使用官方引用图片方式"></a>第一种，使用官方引用图片方式</h3><p>这种在本地typora不会显示</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img example.jpg [title] %&#125;</span><br></pre></td></tr></table></figure><h3 id="第二种，使用typora-root-url-推荐"><a href="#第二种，使用typora-root-url-推荐" class="headerlink" title="第二种，使用typora-root-url,(推荐)"></a>第二种，使用<code>typora-root-url</code>,(推荐)</h3><p>如果你知道 typora-root-url 这一个 typora 特有的 Markdown Front-matter 的话你就知道怎么解决了。</p><p><strong>什么是 Front-matter？</strong></p><p>Front-matter 是 markdown 文件最上方以 —- 分隔的区域，用于指定个别档案的变数。</p><p>typora-root-url 指定了 typora 把哪里当做图片搜索的根目录，就像程序的 workspace 一样。</p><p><strong>怎么做？</strong></p><p>我们只需要设定 typora-root-url 为资源文件夹，然后在 typora 里面导入图片资源时写相对路径，typora 就会自动以 typora-root-url 为起始目录开始搜索。</p><p>举个例子：设置 typora-root-url 为 resource，在 typora 里面导入图片 img1.jpg，这个时候 typora 就会去找 resource/img1.jpg。</p><p>因为使用的是相对路径，hexo 也能很好识别。如果在 hexo 的 scaffolds 下修改 Markdown 模板就可以让 hexo 自动为你填写 typora-root-url 了</p><p>注意复制后删除图片前多余的<code>/</code>，比如<code>![](/image.jpg)</code>不对，应该是<code>![](image.jpg)</code></p><p>同时也要打开<code>_config.yml</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br><span class="line">marked:</span><br><span class="line">  prependRoot: true</span><br><span class="line">  postAsset: true</span><br></pre></td></tr></table></figure><p>举个例子（post.md）：</p><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">typora-root-url: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated:</span><br><span class="line">tags: &#123;&#123; tags &#125;&#125;</span><br><span class="line">categories: &#123;&#123; categories &#125;&#125;</span><br><span class="line">keywords: &#123;&#123; keywords &#125;&#125;</span><br><span class="line">description: &#123;&#123; description &#125;&#125;</span><br><span class="line">top<span class="emphasis">_img:</span></span><br><span class="line"><span class="emphasis">comments:</span></span><br><span class="line"><span class="emphasis">cover:</span></span><br><span class="line"><span class="emphasis">toc:</span></span><br><span class="line"><span class="emphasis">toc_</span>number:</span><br><span class="line">toc<span class="emphasis">_style_</span>simple:</span><br><span class="line">copyright:</span><br><span class="line">copyright<span class="emphasis">_author:</span></span><br><span class="line"><span class="emphasis">copyright_</span>author<span class="emphasis">_href:</span></span><br><span class="line"><span class="emphasis">copyright_</span>url:</span><br><span class="line">copyright<span class="emphasis">_info:</span></span><br><span class="line"><span class="emphasis">mathjax:</span></span><br><span class="line"><span class="emphasis">katex:</span></span><br><span class="line"><span class="emphasis">aplayer:</span></span><br><span class="line"><span class="emphasis">highlight_</span>shrink:</span><br><span class="line">aside:</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure><p>hexo 会使用文件名来替换 hexo + typora调教指南 字段。</p><h3 id="第三种，使用插件"><a href="#第三种，使用插件" class="headerlink" title="第三种，使用插件"></a>第三种，使用插件</h3><p>在本地typora可以显示</p><p><a href="https://github.com/hexojs/hexo-renderer-marked">hexo-renderer-marked </a>解决hexo插入本地图片</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-marked</span><br></pre></td></tr></table></figure><p>在配置文件<code>_config.yml</code>中修改</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br><span class="line">marked:  </span><br><span class="line">  prependRoot: true  </span><br><span class="line">  postAsset: true</span><br></pre></td></tr></table></figure><p>使用语法插入图片：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](image.jpg)</span><br></pre></td></tr></table></figure><p>本地预览不显示图片的问题</p><p>在typora的设置中选择图片工具，选择格式-&gt;图像-&gt;设置图像根目录 ，到图像存放目录即可</p><p><img src="v2-8d28ac51aedad913907c45b4907d325f_720w.webp" alt="img"></p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://hexo.io/zh-cn/docs/asset-folders.html">资源文件夹 | Hexo</a></p><p><a href="https://blog.notnotype.com/2023/02/28/hexo-typora的博客体验/">hexo + typora调教指南 | Notype 的博客 (notnotype.com)</a></p><p><a href="https://zhuanlan.zhihu.com/p/265077468">hexo博客如何插入图片 - 知乎 (zhihu.com)</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo 插入图片 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo的开头</title>
+      <link href="/posts/51718/"/>
+      <url>/posts/51718/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">typora-root-url: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">cover: </span><br><span class="line">top_img: </span><br><span class="line">tags: </span><br><span class="line">- &#123;&#123; tags &#125;&#125;</span><br><span class="line">categories: </span><br><span class="line">- &#123;&#123; categories &#125;&#125;</span><br><span class="line">---</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">typora-root-url: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">cover: </span><br><span class="line">top_img: </span><br><span class="line">tags: </span><br><span class="line">- &#123;&#123; tags &#125;&#125;</span><br><span class="line">categories: </span><br><span class="line">- &#123;&#123; categories &#125;&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> tags </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>测试图片</title>
+      <link href="/posts/50266/"/>
+      <url>/posts/50266/</url>
+      
+        <content type="html"><![CDATA[<h3 id="测试图片"><a href="#测试图片" class="headerlink" title="测试图片"></a>测试图片</h3><p>hexo图片引用方式有三种,推荐使用第二种方式，并在开头加上 <code>typora-root-url:&#123;title&#125;</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img test.png 图片引用方法一 %&#125;</span><br><span class="line"></span><br><span class="line">![图片引用方法二](test.png)</span><br><span class="line"></span><br><span class="line">![图片引用方法三](./images/test.png)</span><br></pre></td></tr></table></figure><p>如下</p><img src="/posts/50266/test.png" class="" title="图片引用方法一"><p><img src="test.png" alt="图片引用方法二"></p><p><img src="./%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87/test.png" alt="图片引用方法三"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>npm使用国内淘宝镜像的方法（两种）</title>
+      <link href="/posts/30472/"/>
+      <url>/posts/30472/</url>
+      
+        <content type="html"><![CDATA[<h3 id="一、通过命令配置"><a href="#一、通过命令配置" class="headerlink" title="一、通过命令配置"></a>一、通过命令配置</h3><h4 id="1、设置淘宝镜像源"><a href="#1、设置淘宝镜像源" class="headerlink" title="1、设置淘宝镜像源"></a>1、设置淘宝镜像源</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npmmirror.com/</span><br></pre></td></tr></table></figure><h4 id="2、设置官方镜像源"><a href="#2、设置官方镜像源" class="headerlink" title="2、设置官方镜像源"></a>2、设置官方镜像源</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npmjs.org</span><br></pre></td></tr></table></figure><h4 id="3、查看镜像使用状态："><a href="#3、查看镜像使用状态：" class="headerlink" title="3、查看镜像使用状态："></a>3、查看镜像使用状态：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config get registry</span><br></pre></td></tr></table></figure><p>如果返回<a href="https://registry.npmmirror.com/">https://registry.npmmirror.com/</a> ，说明配置的是淘宝镜像。</p><p>如果返回<a href="https://registry.npmjs.org/">https://registry.npmjs.org/</a> ，说明配置的是官方镜像。</p><h3 id="二、通过使用cnpm安装"><a href="#二、通过使用cnpm安装" class="headerlink" title="二、通过使用cnpm安装"></a>二、通过使用cnpm安装</h3><h3 id="1、安装cnpm"><a href="#1、安装cnpm" class="headerlink" title="1、安装cnpm"></a>1、安装cnpm</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> npm install -g cnpm --registry=https://registry.npmmirror.com</span><br><span class="line"> 解决安装卡顿或无法安装：</span><br><span class="line"></span><br><span class="line">注册模块镜像</span><br><span class="line"> npm set registry https://registry.npmmirror.com</span><br><span class="line">  // node-gyp 编译依赖的 node 源码镜像  </span><br><span class="line"> npm set disturl https://npmmirror.com/dist </span><br><span class="line"> // 清空缓存  </span><br><span class="line"> npm cache clean --force  </span><br><span class="line"> // 安装cnpm  </span><br><span class="line"> npm install -g cnpm --registry=https://registry.npmmirror.com</span><br></pre></td></tr></table></figure><h3 id="2、使用cnpm"><a href="#2、使用cnpm" class="headerlink" title="2、使用cnpm"></a>2、使用cnpm</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install xxx</span><br></pre></td></tr></table></figure><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/DongShanYuXiao/article/details/129902599">npm使用国内淘宝镜像的方法（两种）-CSDN博客</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> node </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 镜像 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
