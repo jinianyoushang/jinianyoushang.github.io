@@ -107,7 +107,7 @@ theme: butterfly # fluid
 deploy:
   type: git
   repo: https://github.com/jinianyoushang/jinianyoushang.github.io.git
-  branch: main
+  branch: master
   token: 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
 
 # search
