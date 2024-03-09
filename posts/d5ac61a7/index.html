@@ -1,0 +1,424 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CMake (Clion) 中使用vcpkg | xd's blog</title><meta name="author" content="向东"><meta name="copyright" content="向东"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="microsoft&#x2F;vcpkg: C++ Library Manager for Windows, Linux, and MacOS (github.com) 需要注意的是vcpkg在windows默认用MSVC进行编译，所以在项目中使用也应该用MSVC编译器才可以使用 使用 shell 安装软件包以eigen3安装为例，在vcpkg的根目录下打开power shell，输入 1.&#x2F;vcpkg i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CMake (Clion) 中使用vcpkg">
+<meta property="og:url" content="https://jinianyoushang.github.io/posts/d5ac61a7/index.html">
+<meta property="og:site_name" content="xd&#39;s blog">
+<meta property="og:description" content="microsoft&#x2F;vcpkg: C++ Library Manager for Windows, Linux, and MacOS (github.com) 需要注意的是vcpkg在windows默认用MSVC进行编译，所以在项目中使用也应该用MSVC编译器才可以使用 使用 shell 安装软件包以eigen3安装为例，在vcpkg的根目录下打开power shell，输入 1.&#x2F;vcpkg i">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jinianyoushang.github.io/Gallery/acg/40.webp">
+<meta property="article:published_time" content="2024-03-09T08:50:10.000Z">
+<meta property="article:modified_time" content="2024-03-09T08:50:26.678Z">
+<meta property="article:author" content="向东">
+<meta property="article:tag" content="Clion">
+<meta property="article:tag" content="vcpkg">
+<meta property="article:tag" content="Cmake">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jinianyoushang.github.io/Gallery/acg/40.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jinianyoushang.github.io/posts/d5ac61a7/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="fsKNfu0BETzeWU_BRosBbDyNJN34lJOtlISDA7eTGFw"/><meta name="baidu-site-verification" content="xxxxxxx"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?31cc86be966b0617d888d68725b93c95";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CMake (Clion) 中使用vcpkg',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-09 16:50:26'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/Gallery/acg/40.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="xd's blog"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">xd's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CMake (Clion) 中使用vcpkg</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-09T08:50:10.000Z" title="发表于 2024-03-09 16:50:10">2024-03-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-09T08:50:26.678Z" title="更新于 2024-03-09 16:50:26">2024-03-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C/">C++</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="leancloud_visitors" id="/posts/d5ac61a7/" data-flag-title="CMake (Clion) 中使用vcpkg"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span class="leancloud-visitors-count"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/posts/d5ac61a7/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/posts/d5ac61a7/" itemprop="commentCount"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://github.com/microsoft/vcpkg#using-vcpkg-with-cmake">microsoft/vcpkg: C++ Library Manager for Windows, Linux, and MacOS (github.com)</a></p>
+<p><strong>需要注意的是vcpkg在windows默认用MSVC进行编译，所以在项目中使用也应该用MSVC编译器才可以使用</strong></p>
+<h3 id="使用-shell-安装软件包"><a href="#使用-shell-安装软件包" class="headerlink" title="使用 shell 安装软件包"></a>使用 shell 安装软件包</h3><p>以eigen3安装为例，在vcpkg的根目录下打开power shell，输入</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./vcpkg install eigen3</span><br></pre></td></tr></table></figure>
+<p>这里在安装成功之后一般会给出包的使用方法提示</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find_package(Eigen3 CONFIG REQUIRED)</span><br><span class="line">target_link_libraries(main PRIVATE Eigen3::Eigen)</span><br></pre></td></tr></table></figure>
+<h3 id="简单使用方式"><a href="#简单使用方式" class="headerlink" title="简单使用方式"></a>简单使用方式</h3><p>按照官方给出的办法使用包，方便之处在于不需要额外配置头文件和lib的路径，也不需要手动将dll文件放到bin目录下，vcpkg会自动完成这些配置。</p>
+<p>如果你没有在环境变量中配置vcpkg的相关变量，而是在CMakeLists中配置vcpkg，需要注意把vcpkg的配置信息放在project之前，如下</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.21.0)</span><br><span class="line"></span><br><span class="line">set(VCPKG_ROOT &quot;E:/vcpkg&quot;)            # 手动设置到你的vcpkg根目录</span><br><span class="line">set(CMAKE_TOOLCHAIN_FILE &quot;$&#123;VCPKG_ROOT&#125;/scripts/buildsystems/vcpkg.cmake&quot;)</span><br><span class="line"></span><br><span class="line">project(MyProject LANGUAGES CXX)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="openssl使用例子"><a href="#openssl使用例子" class="headerlink" title="openssl使用例子"></a>openssl使用例子</h3><p>安装openssl</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vcpkg install openssl</span><br></pre></td></tr></table></figure>
+<p><img src="image-20240309163359578.png" alt="image-20240309163359578"></p>
+<p>复制里面的内容,后面使用</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_package</span>(OpenSSL REQUIRED)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(main PRIVATE OpenSSL::SSL OpenSSL::Crypto)</span><br></pre></td></tr></table></figure>
+<p>打开Clion，新建项目，在CmakeLists.txt填入上面内容</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.26</span>)</span><br><span class="line"><span class="keyword">set</span>(VCPKG_ROOT <span class="string">&quot;C:/softwares/vcpkg-master&quot;</span>)            <span class="comment"># 手动设置到你的vcpkg根目录</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_TOOLCHAIN_FILE <span class="string">&quot;$&#123;VCPKG_ROOT&#125;/scripts/buildsystems/vcpkg.cmake&quot;</span>)</span><br><span class="line"><span class="keyword">project</span>(clion_demo)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">17</span>)</span><br><span class="line"><span class="keyword">add_compile_options</span>(<span class="string">&quot;$&lt;$&lt;C_COMPILER_ID:MSVC&gt;:/utf-8&gt;&quot;</span>)</span><br><span class="line"><span class="keyword">add_compile_options</span>(<span class="string">&quot;$&lt;$&lt;CXX_COMPILER_ID:MSVC&gt;:/utf-8&gt;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(<span class="variable">$&#123;PROJECT_NAME&#125;</span> main.cpp)</span><br><span class="line"></span><br><span class="line"><span class="comment">#这里添加包</span></span><br><span class="line"><span class="keyword">find_package</span>(OpenSSL REQUIRED)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(<span class="variable">$&#123;PROJECT_NAME&#125;</span> PRIVATE OpenSSL::SSL OpenSSL::Crypto)</span><br></pre></td></tr></table></figure>
+<p>main.cpp文件如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;openssl/rsa.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;openssl/pem.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// 生成 RSA 密钥对</span></span><br><span class="line">    RSA *rsa = <span class="built_in">RSA_generate_key</span>(<span class="number">2048</span>, RSA_F4, <span class="literal">nullptr</span>, <span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">if</span> (!rsa) &#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;Failed to generate RSA key pair\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 加密明文</span></span><br><span class="line">    std::string plaintext = <span class="string">&quot;Hello, RSA!&quot;</span>;</span><br><span class="line">    <span class="function">std::vector&lt;<span class="type">unsigned</span> <span class="type">char</span>&gt; <span class="title">ciphertext</span><span class="params">(RSA_size(rsa))</span></span>;</span><br><span class="line">    <span class="type">int</span> ciphertext_len = <span class="built_in">RSA_public_encrypt</span>(plaintext.<span class="built_in">size</span>(),</span><br><span class="line">                                            <span class="built_in">reinterpret_cast</span>&lt;<span class="type">const</span> <span class="type">unsigned</span> <span class="type">char</span> *&gt;(plaintext.<span class="built_in">c_str</span>()),</span><br><span class="line">                                            ciphertext.<span class="built_in">data</span>(), rsa, RSA_PKCS1_PADDING);</span><br><span class="line">    <span class="keyword">if</span> (ciphertext_len == <span class="number">-1</span>) &#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;RSA encryption failed\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 解密密文</span></span><br><span class="line">    <span class="function">std::vector&lt;<span class="type">unsigned</span> <span class="type">char</span>&gt; <span class="title">decryptedtext</span><span class="params">(RSA_size(rsa))</span></span>;</span><br><span class="line">    <span class="type">int</span> decryptedtext_len = <span class="built_in">RSA_private_decrypt</span>(ciphertext_len, ciphertext.<span class="built_in">data</span>(), decryptedtext.<span class="built_in">data</span>(), rsa,</span><br><span class="line">                                                RSA_PKCS1_PADDING);</span><br><span class="line">    <span class="keyword">if</span> (decryptedtext_len == <span class="number">-1</span>) &#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;RSA decryption failed\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印结果</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Plaintext: &quot;</span> &lt;&lt; plaintext &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Ciphertext: &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; ciphertext_len; ++i) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%02x&quot;</span>, ciphertext[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Decryptedtext: &quot;</span></span><br><span class="line">              &lt;&lt; std::<span class="built_in">string</span>(<span class="built_in">reinterpret_cast</span>&lt;<span class="type">const</span> <span class="type">char</span> *&gt;(decryptedtext.<span class="built_in">data</span>()), decryptedtext_len) &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 释放 RSA 密钥对</span></span><br><span class="line">    <span class="built_in">RSA_free</span>(rsa);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// 生成 RSA 密钥对</span></span><br><span class="line">    RSA* rsa = <span class="built_in">RSA_new</span>();</span><br><span class="line">    BIGNUM* exponent = <span class="built_in">BN_new</span>();</span><br><span class="line">    <span class="built_in">BN_set_word</span>(exponent, RSA_F4);</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">RSA_generate_key_ex</span>(rsa, <span class="number">2048</span>, exponent, <span class="literal">nullptr</span>)) &#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;Failed to generate RSA key pair\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 保存公钥</span></span><br><span class="line">    std::string pubkey_filename = <span class="string">&quot;publickey.pem&quot;</span>;</span><br><span class="line">    FILE* pubkey_file = <span class="built_in">fopen</span>(pubkey_filename.<span class="built_in">c_str</span>(), <span class="string">&quot;wb&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!pubkey_file) &#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;Failed to create public key file\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">PEM_write_RSAPublicKey</span>(pubkey_file, rsa)) &#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;Failed to write public key to file\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">fclose</span>(pubkey_file);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 保存私钥</span></span><br><span class="line">    std::string privkey_filename = <span class="string">&quot;privatekey.pem&quot;</span>;</span><br><span class="line">    FILE* privkey_file = <span class="built_in">fopen</span>(privkey_filename.<span class="built_in">c_str</span>(), <span class="string">&quot;wb&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!privkey_file) &#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;Failed to create private key file\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">PEM_write_RSAPrivateKey</span>(privkey_file, rsa, <span class="literal">nullptr</span>, <span class="literal">nullptr</span>, <span class="number">0</span>, <span class="literal">nullptr</span>, <span class="literal">nullptr</span>)) &#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;Failed to write private key to file\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">fclose</span>(privkey_file);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 释放资源</span></span><br><span class="line">    <span class="built_in">RSA_free</span>(rsa);</span><br><span class="line">    <span class="built_in">BN_free</span>(exponent);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">test01</span>();     <span class="comment">//加密字符串例子</span></span><br><span class="line">    <span class="built_in">test02</span>();      <span class="comment">//c++ openssl生成公钥私钥保存到文件 有问题</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果，表示可以成功使用</p>
+<p><img src="image-20240309163710420.png" alt="image-20240309163710420"></p>
+<h3 id="使用-vcpkg-json-为你的项目配置第三方依赖"><a href="#使用-vcpkg-json-为你的项目配置第三方依赖" class="headerlink" title="使用 vcpkg.json 为你的项目配置第三方依赖"></a>使用 vcpkg.json 为你的项目配置第三方依赖</h3><p>可能你的项目需要在多台电脑上编译，如果在每台电脑上都使用shell手动安装依赖库显然不是优雅的解决办法。又或者你的项目需要固定第三方依赖的版本，而vcpkg的命令行似乎没有给出选择软件包版本的选项，难道只能通过不更新vcpkg来使软件库永远保持在某个版本吗？那如果想对某个依赖的版本降级怎么办？</p>
+<p>对于自动安装依赖的问题，vcpkg给出的解决办法是，在你的项目的根目录也就是顶级CMakeLists.txt所在目录创建名为vcpkg.json的配置文件：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;:&quot;MyProject_dependencies&quot;,</span><br><span class="line">    &quot;version-semver&quot;:&quot;1.0.0&quot;,</span><br><span class="line">    &quot;dependencies&quot;:[</span><br><span class="line">        &quot;cgal&quot;,</span><br><span class="line">        &quot;eigen3&quot;,</span><br><span class="line">        &quot;freeimage&quot;,</span><br><span class="line">        &quot;glm&quot;,</span><br><span class="line">        &quot;glew&quot;,</span><br><span class="line">        &quot;flann&quot;,</span><br><span class="line">        &quot;lz4&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>并在环境变量或CMakeLists中配置变量</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set(VCPKG_FEATURE_FLAGS &quot;version&quot;)          # 用于支持自定义依赖版本</span><br></pre></td></tr></table></figure>
+<p>如此，不需要在shell手动安装软件包，运行cmake的时候vcpkg会自动将配置文件中的所有依赖安装到你项目的build\vcpkg_installed目录下。</p>
+<h3 id="关于vcpkg支持哪些库"><a href="#关于vcpkg支持哪些库" class="headerlink" title="关于vcpkg支持哪些库"></a>关于vcpkg支持哪些库</h3><p>使用shell命令</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./vcpkg search ***</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/615585442">VS2022 + vcpkg 使用 - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/477497540">使用VCPKG管理你的第三方依赖 - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/vcpkg/commands/install">vcpkg install | Microsoft Learn</a></p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/vcpkg/get_started/overview">vcpkg 概述 | Microsoft Learn</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://jinianyoushang.github.io">向东</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://jinianyoushang.github.io/posts/d5ac61a7/">https://jinianyoushang.github.io/posts/d5ac61a7/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jinianyoushang.github.io" target="_blank">xd's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Clion/">Clion</a><a class="post-meta__tags" href="/tags/vcpkg/">vcpkg</a><a class="post-meta__tags" href="/tags/Cmake/">Cmake</a></div><div class="post_share"><div class="social-share" data-image="/Gallery/acg/40.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/posts/67c5155/" title="使用vcpkg管理C++项目依赖"><img class="cover" src="/Gallery/acg/49.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">使用vcpkg管理C++项目依赖</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/67c5155/" title="使用vcpkg管理C++项目依赖"><img class="cover" src="/Gallery/acg/49.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-09</div><div class="title">使用vcpkg管理C++项目依赖</div></div></a></div><div><a href="/posts/56c9a421/" title="Clion中开发Qt"><img class="cover" src="/Gallery/acg/57.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-09</div><div class="title">Clion中开发Qt</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">向东</div><div class="author-info__description">xd's blog</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jinianyoushang"><i class="fab fa-github"></i><span>github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jinianyoushang" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:xd98@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is xd's blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-shell-%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="toc-number">1.</span> <span class="toc-text">使用 shell 安装软件包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">简单使用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#openssl%E4%BD%BF%E7%94%A8%E4%BE%8B%E5%AD%90"><span class="toc-number">3.</span> <span class="toc-text">openssl使用例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-vcpkg-json-%E4%B8%BA%E4%BD%A0%E7%9A%84%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E7%AC%AC%E4%B8%89%E6%96%B9%E4%BE%9D%E8%B5%96"><span class="toc-number">4.</span> <span class="toc-text">使用 vcpkg.json 为你的项目配置第三方依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Evcpkg%E6%94%AF%E6%8C%81%E5%93%AA%E4%BA%9B%E5%BA%93"><span class="toc-number">5.</span> <span class="toc-text">关于vcpkg支持哪些库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number"></span> <span class="toc-text">参考</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/d5ac61a7/" title="CMake (Clion) 中使用vcpkg"><img src="/Gallery/acg/40.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CMake (Clion) 中使用vcpkg"/></a><div class="content"><a class="title" href="/posts/d5ac61a7/" title="CMake (Clion) 中使用vcpkg">CMake (Clion) 中使用vcpkg</a><time datetime="2024-03-09T08:50:10.000Z" title="发表于 2024-03-09 16:50:10">2024-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/67c5155/" title="使用vcpkg管理C++项目依赖"><img src="/Gallery/acg/49.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用vcpkg管理C++项目依赖"/></a><div class="content"><a class="title" href="/posts/67c5155/" title="使用vcpkg管理C++项目依赖">使用vcpkg管理C++项目依赖</a><time datetime="2024-03-09T08:15:10.000Z" title="发表于 2024-03-09 16:15:10">2024-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/56c9a421/" title="Clion中开发Qt"><img src="/Gallery/acg/57.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Clion中开发Qt"/></a><div class="content"><a class="title" href="/posts/56c9a421/" title="Clion中开发Qt">Clion中开发Qt</a><time datetime="2024-03-09T06:57:54.000Z" title="发表于 2024-03-09 14:57:54">2024-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/e302e79f/" title="Butterfly优化搜索引擎收录"><img src="/Gallery/acg/7.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Butterfly优化搜索引擎收录"/></a><div class="content"><a class="title" href="/posts/e302e79f/" title="Butterfly优化搜索引擎收录">Butterfly优化搜索引擎收录</a><time datetime="2024-03-08T05:24:00.000Z" title="发表于 2024-03-08 13:24:00">2024-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/cf8e0b0/" title="linux添加动态库搜索路径"><img src="/Gallery/acg/61.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="linux添加动态库搜索路径"/></a><div class="content"><a class="title" href="/posts/cf8e0b0/" title="linux添加动态库搜索路径">linux添加动态库搜索路径</a><time datetime="2024-03-08T03:18:03.000Z" title="发表于 2024-03-08 11:18:03">2024-03-08</time></div></div></div></div></div></div></main><footer id="footer" style="background: RGBA(247,249,254,0.15)"><div id="footer-wrap"><div class="copyright">&copy;2024 By 向东</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'HzJfn7yNdjCarAoSsrO8b231-gzGzoHsz',
+      appKey: 'YdEKsuHXMC4NbtmlOT9Q0mot',
+      avatar: 'monsterid',
+      serverURLs: 'https://hzjfn7yn.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.19.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://hzjfn7yn.lc-cn-n1-shared.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'HzJfn7yNdjCarAoSsrO8b231-gzGzoHsz',
+        "X-LC-Key": 'YdEKsuHXMC4NbtmlOT9Q0mot',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
