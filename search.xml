@@ -42,7 +42,7 @@
       
       <categories>
           
-          <category> ubuntu </category>
+          <category> linux </category>
           
       </categories>
       
@@ -78,11 +78,11 @@
             
             <tag> linux </tag>
             
-            <tag> ubuntu </tag>
-            
             <tag> docker </tag>
             
             <tag> centos </tag>
+            
+            <tag> ubuntu </tag>
             
         </tags>
       
@@ -138,9 +138,9 @@
             
             <tag> linux </tag>
             
-            <tag> ubuntu </tag>
-            
             <tag> docker </tag>
+            
+            <tag> ubuntu </tag>
             
         </tags>
       
@@ -158,16 +158,16 @@
       
       <categories>
           
-          <category> vcpkg </category>
+          <category> cpp </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> C++ </tag>
-            
             <tag> vcpkg </tag>
+            
+            <tag> C++ </tag>
             
         </tags>
       
@@ -185,16 +185,16 @@
       
       <categories>
           
-          <category> C++ </category>
+          <category> cpp </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Clion </tag>
-            
             <tag> vcpkg </tag>
+            
+            <tag> Clion </tag>
             
             <tag> Cmake </tag>
             
@@ -214,20 +214,20 @@
       
       <categories>
           
-          <category> C++ </category>
+          <category> cpp </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Clion </tag>
-            
             <tag> vcpkg </tag>
             
-            <tag> VS2022 </tag>
+            <tag> Clion </tag>
             
             <tag> Cmake </tag>
+            
+            <tag> VS2022 </tag>
             
         </tags>
       
@@ -245,7 +245,7 @@
       
       <categories>
           
-          <category> C++ </category>
+          <category> cpp </category>
           
       </categories>
       
@@ -254,7 +254,7 @@
             
             <tag> Clion </tag>
             
-            <tag> C++ </tag>
+            <tag> Cpp </tag>
             
             <tag> Qt </tag>
             
