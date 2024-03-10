@@ -20,9 +20,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> docker </tag>
+            
+            <tag> linux </tag>
             
             <tag> 追加端口 </tag>
             
@@ -76,9 +76,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> docker </tag>
+            
+            <tag> linux </tag>
             
             <tag> centos </tag>
             
@@ -107,9 +107,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> docker </tag>
+            
+            <tag> linux </tag>
             
             <tag> 镜像源 </tag>
             
@@ -136,9 +136,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> docker </tag>
+            
+            <tag> linux </tag>
             
             <tag> ubuntu </tag>
             
@@ -227,9 +227,9 @@
             
             <tag> Cmake </tag>
             
-            <tag> C++ </tag>
-            
             <tag> VS2022 </tag>
+            
+            <tag> C++ </tag>
             
         </tags>
       
@@ -247,7 +247,7 @@
       
       <categories>
           
-          <category> C++ </category>
+          <category> Cpp </category>
           
       </categories>
       
@@ -524,7 +524,7 @@
       
       <categories>
           
-          <category> C++ </category>
+          <category> Cpp </category>
           
       </categories>
       
