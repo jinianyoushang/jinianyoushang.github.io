@@ -29,7 +29,9 @@ top_img:
 
 
 
+## 搜索引擎优化
 
+[Butterfly优化搜索引擎收录 | xd's blog (jinianyoushang.github.io)](https://jinianyoushang.github.io/posts/e302e79f/)
 
 ## 为 Github Pages 绑定域名
 

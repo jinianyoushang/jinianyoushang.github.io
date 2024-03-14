@@ -18,7 +18,6 @@ abbrlink: e302e79f
 使用想要查找的搜索引擎，输入：
 
 ```
-PLAINTEXT
 site:你的网站
 比如我的：site:qmike.top
 ```
@@ -31,8 +30,7 @@ site:你的网站
 
 安装 `abbrlink` 插件：
 
-```
-BASH
+```BASH
 npm install hexo-abbrlink --save
 ```
 
@@ -40,8 +38,7 @@ npm install hexo-abbrlink --save
 
 修改 hexo 根目录下 `config.yml` 中的 `permalink` 的值：
 
-```
-YML
+```YML
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://qmike.top
@@ -50,8 +47,7 @@ permalink: posts/:abbrlink.html
 
 在 `config.yml` 最底下添加 `abbrlink config`
 
-```
-YML
+```YML
 # abbrlink config
 abbrlink:
   alg: crc32      # support crc16(default) and crc32
@@ -61,8 +57,7 @@ abbrlink:
 
 配置完成后，网站的链接应该类似这样：
 
-```
-PLAINTEXT
+```PLAINTEXT
 https://qmike.top/posts/77940e6f.html        # 有.html后缀 
 ```
 
@@ -72,16 +67,14 @@ https://qmike.top/posts/77940e6f.html        # 有.html后缀
 
 安装百度和 Google 的站点地图生成插件：
 
-```
-BASH
+```BASH
 npm install hexo-generator-baidu-sitemap --save
 npm install hexo-generator-sitemap --save
 ```
 
 然后来到 hexo 根目录配置文件 `config.yml`，在下面添加：
 
-```
-YML
+```YML
 # 站点地图
 sitemap:
   path: sitemap.xml
@@ -92,7 +85,6 @@ baidusitemap:
 然后重新推送到服务器，访问如下 URL:
 
 ```
-PLAINTEXT
 https://你的域名/sitemap.xml
 https://你的域名/baidusitemap.xml
 ```
@@ -104,13 +96,12 @@ https://你的域名/baidusitemap.xml
 给你的 hexo 网站添加蜘蛛协议 robots.txt, 把 robots.txt 放在你的 hexo 站点的 source 文件下即可。
 
 ```
-PLAINTEXT
 # hexo robots.txt
 User-agent: *
 Allow: /
 
-Sitemap: https://qmike.top/sitemap.xml
-Sitemap: https://qmike.top/baidusitemap.xml
+Sitemap: https://{域名}/sitemap.xml
+Sitemap: https://{域名}/baidusitemap.xml
 ```
 
 ## 4. 百度收录
@@ -127,8 +118,7 @@ Sitemap: https://qmike.top/baidusitemap.xml
 
 把 `content` 中的字符串复制到主题配置文件`_config.butterfly.yml` 中的 `baidu_site_verification` 。
 
-```
-YML
+```YML
 # Baidu Webmaster tools verification.
 # See: https://ziyuan.baidu.com/site
 site_verification:
@@ -146,15 +136,13 @@ site_verification:
 
 **主动推送**最为快速的提交方式，是被百度收录最快的推送方式。主动推送可以通过安装插件实现：
 
-```
-BASH
+```BASH
 npm install hexo-baidu-url-submit --save
 ```
 
 然后在 hexo 根目录配置文件`_config.yml` 中，添加：
 
-```
-YML
+```YML
 # 主动推送百度，被百度收录
 baidu_url_submit:
   count: 10 # 提交最新的10个链接
@@ -173,8 +161,7 @@ baidu_url_submit:
 
 最后，在`_config.yml` 文件中的 `deploy` 加入新的 `type`:
 
-```
-YML
+```YML
 deploy:
   - type: git
     repository: https://github.com/fenshen000/fenshen000.github.io.git
@@ -195,7 +182,6 @@ deploy:
 若要实现手动提交，则把下面的代码粘贴到百度站长平台的 “手动收录” 地址窗口即可：
 
 ```
-PLAINTEXT
 https://你的域名/sitemap.xml
 https://你的域名/baidusitemap.xml
 ```
@@ -236,8 +222,7 @@ https://你的域名/baidusitemap.xml
 
 两种方式，你可以下载个 HTML 文件然后放在站点目录下的 `source` 中，然后推送到服务器。或者把 `content` 中的字符串复制到主题配置文件`_config.butterfly.yml` 对应内容中：
 
-```
-YML
+```YML
 site_verification:
   - name: google-site-verification
     content: # 在这里填上面的字符串
@@ -259,15 +244,13 @@ site_verification:
 
 给非友情链接的出站链接添加「nofollow」标签，nofollow 标签是由谷歌领头创新的一个「反垃圾链接」的标签，并被百度、yahoo 等各大搜索引擎广泛支持，引用 nofollow 标签的目的是：用于指示搜索引擎不要追踪（即抓取）网页上的带有 nofollow 属性的任何出站链接，以减少垃圾链接的分散网站权重。
 
-```
-BASH
+```BASH
 npm install hexo-filter-nofollow --save
 ```
 
 再在 hexo 根目录的`_config.yml` 中添加配置，将 `nofollow` 设置为 `true`：
 
-```
-YML
+```YML
 nofollow:
   enable: true
   field: site

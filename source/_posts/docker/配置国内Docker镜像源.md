@@ -56,12 +56,18 @@ docker info
 
 ## Docker hub 镜像源
 
-| 提供商       | 公共镜像地址                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 网易云       | [http://hub-mirror.c.163.com](https://link.zhihu.com/?target=http%3A//hub-mirror.c.163.com) |
-| 百度云       | [http://mirror.baidubce.com](https://link.zhihu.com/?target=http%3A//mirror.baidubce.com) |
-| 腾讯云       | [http://ccr.ccs.tencentyun.com](https://link.zhihu.com/?target=http%3A//ccr.ccs.tencentyun.com) |
-| Docker Proxy | [http://dockerproxy.com](https://link.zhihu.com/?target=http%3A//dockerproxy.com) |
+推荐使用阿里云自己注册的
+
+[配置docker加速服务 | xd's blog](https://jinianyoushang.github.io/posts/4c1a7ee4/)
+
+| 提供商           | 公共镜像地址                                                 |
+| ---------------- | ------------------------------------------------------------ |
+| 网易云           | [http://hub-mirror.c.163.com](https://link.zhihu.com/?target=http%3A//hub-mirror.c.163.com) |
+| 百度云           | [http://mirror.baidubce.com](https://link.zhihu.com/?target=http%3A//mirror.baidubce.com) |
+| 腾讯云           | [http://ccr.ccs.tencentyun.com](https://link.zhihu.com/?target=http%3A//ccr.ccs.tencentyun.com) |
+| Docker Proxy     | [http://dockerproxy.com](https://link.zhihu.com/?target=http%3A//dockerproxy.com) |
+| Docker中国区官方 | https://registry.docker-cn.com                               |
+|                  |                                                              |
 
 ## 测试镜像源是否有效
 
@@ -71,3 +77,49 @@ docker pull hub-mirror.c.163.com/library/nginx:latest
 docker pull mirror.baidubce.com/library/nginx:latest
 docker pull ccr.ccs.tencentyun.com/library/nginx:latest
 ```
+
+## 源镜像测速
+
+### Linux
+
+在Linux下面有`time`命令，可以使用该命令对源进行测速：
+
+```bash
+time docker pull nginx:latest
+```
+
+测速结果大致如下：
+
+```bash
+real   1m14.078s
+user   0m0.176s
+sys    0m0.120s
+```
+
+### Windows
+
+在Windows的PowerShell下面可以使用以下命令测速：
+
+```powershell
+Measure-Command {docker pull nginx:latest | Out-Default}
+```
+
+测速结果大致如下：
+
+```powershell
+Days              : 0
+Hours             : 0
+Minutes           : 0
+Seconds           : 4
+Milliseconds      : 217
+Ticks             : 42174202
+TotalDays         : 4.88127337962963E-05
+TotalHours        : 0.00117150561111111
+TotalMinutes      : 0.0702903366666667
+TotalSeconds      : 4.2174202
+TotalMilliseconds : 4217.4202
+```
+
+## 参考资料
+
+[Docker Hub 镜像源 - 掘金 (juejin.cn)](https://juejin.cn/post/7165806699461378085)

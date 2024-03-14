@@ -142,3 +142,9 @@ kramed:
   breaks: true
   smartLists: true
   smartypants: true
+
+# 站点地图
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
