@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Visual Studio CMake中文UTF8编码设置</title>
+      <link href="/posts/42ff7d67/"/>
+      <url>/posts/42ff7d67/</url>
+      
+        <content type="html"><![CDATA[<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>使用Cmake调用MSVC编译utf-8格式的cpp文件时，如果里面有中文会编译出错。如下图：</p><p><img src="image-20240314094223549.png" alt="image-20240314094223549"></p><h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><ol><li>文件-高级保存选项，选择utf-8编码，无签名格式</li><li>在<strong>add_executable之前</strong>加入:</li></ol><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#msvc支持中文 utf8</span></span><br><span class="line"><span class="keyword">add_compile_options</span>(<span class="string">&quot;$&lt;$&lt;C_COMPILER_ID:MSVC&gt;:/utf-8&gt;&quot;</span>)</span><br><span class="line"><span class="keyword">add_compile_options</span>(<span class="string">&quot;$&lt;$&lt;CXX_COMPILER_ID:MSVC&gt;:/utf-8&gt;&quot;</span>)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Clion </tag>
+            
+            <tag> Cpp </tag>
+            
+            <tag> Qt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker中使用Redis</title>
       <link href="/posts/175acaf3/"/>
       <url>/posts/175acaf3/</url>
