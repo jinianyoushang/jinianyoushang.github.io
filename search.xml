@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>C++项目目录结构</title>
+      <link href="/posts/f6d25693/"/>
+      <url>/posts/f6d25693/</url>
+      
+        <content type="html"><![CDATA[<h4 id="自己的想法"><a href="#自己的想法" class="headerlink" title="自己的想法"></a>自己的想法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">project</span><br><span class="line">|--3rdparty </span><br><span class="line">|--build#用于存放第三方库，每个第三库以单独目录的形式组织在3rdparty目录下</span><br><span class="line">|--doc          # 文档目录，存放项目相关的文档</span><br><span class="line">|--include      # 公共头文件目录，按模块划分子目录</span><br><span class="line">|--lib          # 外部依赖库目录</span><br><span class="line">|--res          # 资源目录，存放图片、音频、字体等资源文件</span><br><span class="line">|--samples      # 样例程序目录，展示项目的用法</span><br><span class="line">|--src          # 源代码目录，按模块划分子目录</span><br><span class="line">|--test         # 测试目录，存放单元测试和集成测试代码</span><br><span class="line">|--tools        # 工具目录，存放项目支撑工具</span><br><span class="line">|--copyleft     # 版权声明文件</span><br><span class="line">|--CMakeLists.txt   # CMake构建配置文件</span><br><span class="line">|--README.md    # 项目自述文件</span><br></pre></td></tr></table></figure><p>其中src</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">下面可以为</span><br><span class="line">include以及源文件</span><br></pre></td></tr></table></figure><ul><li><strong>3rdparty :</strong> 用于存放第三方库，每个第三库以单独目录的形式组织在3rdparty目录下。其中每个第三方目录下又有 <code>include</code> 和 <code>lib</code> 分别存放第三方库的头文件和库文件。</li></ul><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">project_name</span><br><span class="line">├── deploy</span><br><span class="line">├── build</span><br><span class="line">├── doc</span><br><span class="line">├── 3rdparty</span><br><span class="line">├── include</span><br><span class="line">│   └── project_name</span><br><span class="line">├── project_name</span><br><span class="line">├── tools</span><br><span class="line">├── scripts</span><br><span class="line">├── platforms</span><br><span class="line">├── test</span><br><span class="line">├── LICENSE</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">├── build.sh</span><br><span class="line">├── toolchain.cmake</span><br><span class="line">├── .gitignore</span><br><span class="line">├── readme.md</span><br><span class="line">└── sample</span><br></pre></td></tr></table></figure><ul><li><strong>deploy :</strong> 用于存放部署、交付的文件，其包含子目录bin、lib、include分别存放本项目最总生成的可执行文件、库文件以及对外所提供的头文件。</li><li><strong>build :</strong> 用于存放build时cmake产生的中间文件，其包含子目录release和debug。</li><li><strong>doc :</strong> 用于存放项目的相关文档。</li><li><strong>3rdparty :</strong> 用于存放第三方库，每个第三库以单独目录的形式组织在3rdparty目录下。其中每个第三方目录下又有 <code>include</code> 和 <code>lib</code> 分别存放第三方库的头文件和库文件。</li><li><strong>include/project_name :</strong> 用于存放每个模块以及整个工程对外的头文件。具体格式如下文。</li><li><strong>project_name :</strong> 存放源码文件，以及内部头文件。具体格式如下文。</li><li><strong>tools :</strong> 包含一些支持项目构建的工具，如编译器等，一般情况下使用软链接。</li><li><strong>scripts :</strong> 包含一些脚本文件，如使用Jenkins进行自动化构建时所需要的脚本文件，以及一些用于预处理的脚本文件。</li><li><strong>platforms :</strong> 用于一些交叉编译时所需要的工具链等文件，按照平台进行划分来组织子目录。每个子目录下存放 <code>toolchain.cmake</code> 等用于指定平台的文件。</li><li><strong>test :</strong> 分模块存放测试代码。</li><li><strong>LICENSE :</strong> 版权信息说明。</li><li><strong>CMakeLists.txt :</strong> cmake文件。</li><li><strong>build.sh :</strong> build脚本文件。</li><li><strong>.gitignore :</strong> 指明git忽略规则。</li><li><strong>readme.md :</strong> 存放工程说明文件。</li><li><strong>sample :</strong> 存放示例代码。</li></ul><h4 id="参考2"><a href="#参考2" class="headerlink" title="参考2"></a>参考2</h4><p><a href="https://zhuanlan.zhihu.com/p/59450618">C++项目的组织方式可能因为项目的规模、类型、目标平台等因素而有所不同，但是一般来说，一个良好的C++项目应该遵循以下几个原则</a><a href="https://zhuanlan.zhihu.com/p/59450618">1</a>：</p><ul><li>有一个清晰的目录结构，区分不同的部分，如源代码、头文件、文档、资源、测试、工具等。</li><li>有一个可靠的构建系统，可以根据不同的环境生成相应的Makefile或者项目文件，如使用CMake、Makefile、Visual Studio等。</li><li>有一个合理的依赖管理，避免不必要的头文件包含，使用相对路径或者预定义的变量来引用外部库或者模块。</li><li>有一个完善的文档，说明项目的功能、用法、协议、注意事项等。</li><li>有一个规范的代码风格，遵循一致的命名规则、缩进规则、注释规则等。</li></ul><p><a href="https://zhuanlan.zhihu.com/p/59450618">一个可能的C++项目目录结构示例</a><a href="https://zhuanlan.zhihu.com/p/59450618">1</a><a href="https://zhuanlan.zhihu.com/p/36382087">2</a>如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">project</span><br><span class="line">|--build        # 项目编译目录，存放临时文件和目标文件</span><br><span class="line">|--dist         # 分发目录，存放最终发布的可执行程序和运行支持文件</span><br><span class="line">|--doc          # 文档目录，存放项目相关的文档</span><br><span class="line">|--include      # 公共头文件目录，按模块划分子目录</span><br><span class="line">|--lib          # 外部依赖库目录</span><br><span class="line">|--res          # 资源目录，存放图片、音频、字体等资源文件</span><br><span class="line">|--samples      # 样例程序目录，展示项目的用法</span><br><span class="line">|--src          # 源代码目录，按模块划分子目录</span><br><span class="line">|--test         # 测试目录，存放单元测试和集成测试代码</span><br><span class="line">|--tools        # 工具目录，存放项目支撑工具</span><br><span class="line">|--copyleft     # 版权声明文件</span><br><span class="line">|--CMakeLists.txt   # CMake构建配置文件</span><br><span class="line">|--README.md    # 项目自述文件</span><br><span class="line">#自己加的</span><br><span class="line">|-bin  二进制文件</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>参见下面的</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">project —+—build—+—debug</span><br><span class="line">　　　　　|　　　　　|—release</span><br><span class="line">　　　　　|—dist</span><br><span class="line">　　　　　|—doc</span><br><span class="line">　　　　　|—include—+—module1</span><br><span class="line">　　　　　|　　　　　　|—module2</span><br><span class="line">　　　　　|—lib</span><br><span class="line">　　　　　|—module1</span><br><span class="line">　　　　　|—module2</span><br><span class="line">　　　　　|—res</span><br><span class="line">　　　　　|—samples—+—sample1</span><br><span class="line">　　　　　|　　　　　　|—sample2</span><br><span class="line">　　　　　|—tools</span><br><span class="line">　　　　　|—copyleft</span><br><span class="line">　　　　　|—Makefile</span><br><span class="line">　　　　　|—README</span><br></pre></td></tr></table></figure><h4 id="参考3"><a href="#参考3" class="headerlink" title="参考3"></a>参考3</h4><p><a href="https://zhuanlan.zhihu.com/p/59450618">干货：构建C/C++良好的工程结构 - 知乎 (zhihu.com)</a></p><p><a href="https://blog.csdn.net/xiaolongtuan/article/details/45094887">C++项目目录组织结构_xiaolongtuan的博客-CSDN博客</a></p><p><a href="https://github.com/hattonl/cpp-project-structure">hattonl/cpp-project-structure: C++工程目录结构规范示例 (github.com)</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c++ </tag>
+            
+            <tag> 项目结构 </tag>
+            
+            <tag> Cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Visual Studio CMake中文UTF8编码设置</title>
       <link href="/posts/42ff7d67/"/>
       <url>/posts/42ff7d67/</url>
@@ -13,14 +42,14 @@
       
       <categories>
           
-          <category> Cpp </category>
+          <category> C++ </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Cpp </tag>
+            <tag> C++ </tag>
             
             <tag> cmake </tag>
             
@@ -74,11 +103,11 @@
       
         <tags>
             
+            <tag> redis </tag>
+            
             <tag> docker </tag>
             
             <tag> mysql </tag>
-            
-            <tag> redis </tag>
             
             <tag> dockerfile </tag>
             
@@ -111,13 +140,13 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
-            <tag> mysql </tag>
-            
             <tag> redis </tag>
             
+            <tag> docker </tag>
+            
             <tag> 镜像 </tag>
+            
+            <tag> mysql </tag>
             
         </tags>
       
@@ -194,9 +223,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> docker </tag>
+            
+            <tag> linux </tag>
             
             <tag> 追加端口 </tag>
             
@@ -250,13 +279,13 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> docker </tag>
             
-            <tag> ubuntu </tag>
+            <tag> linux </tag>
             
             <tag> centos </tag>
+            
+            <tag> ubuntu </tag>
             
         </tags>
       
@@ -281,9 +310,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> docker </tag>
+            
+            <tag> linux </tag>
             
             <tag> 镜像源 </tag>
             
@@ -310,9 +339,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> docker </tag>
+            
+            <tag> linux </tag>
             
             <tag> ubuntu </tag>
             
@@ -339,9 +368,9 @@
       
         <tags>
             
-            <tag> vcpkg </tag>
-            
             <tag> C++ </tag>
+            
+            <tag> vcpkg </tag>
             
         </tags>
       
@@ -397,9 +426,9 @@
             
             <tag> Clion </tag>
             
-            <tag> vcpkg </tag>
-            
             <tag> C++ </tag>
+            
+            <tag> vcpkg </tag>
             
             <tag> Cmake </tag>
             
@@ -421,7 +450,7 @@
       
       <categories>
           
-          <category> Cpp </category>
+          <category> C++ </category>
           
       </categories>
       
@@ -430,7 +459,7 @@
             
             <tag> Clion </tag>
             
-            <tag> Cpp </tag>
+            <tag> C++ </tag>
             
             <tag> Qt </tag>
             
@@ -689,7 +718,7 @@
     
     
     <entry>
-      <title>firstcpp</title>
+      <title>firstc++</title>
       <link href="/posts/44e603ce/"/>
       <url>/posts/44e603ce/</url>
       
@@ -698,7 +727,7 @@
       
       <categories>
           
-          <category> Cpp </category>
+          <category> C++ </category>
           
       </categories>
       
