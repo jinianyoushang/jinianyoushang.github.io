@@ -4,6 +4,66 @@
   
     
     <entry>
+      <title>linux设置开机自启动命令</title>
+      <link href="/posts/eae3c50a/"/>
+      <url>/posts/eae3c50a/</url>
+      
+        <content type="html"><![CDATA[<h2 id="方法一：修改-etc-rc-d-rc-local-文件"><a href="#方法一：修改-etc-rc-d-rc-local-文件" class="headerlink" title="方法一：修改 /etc/rc.d/rc.local 文件"></a>方法一：修改 /etc/rc.d/rc.local 文件</h2><p><code>/etc/rc.d/rc.local</code> 文件会在 Linux 系统各项服务都启动完毕之后再被运行。所以你想要自己的脚本在开机后被运行的话，可以将自己脚本路径加到该文件里。</p><p>但是，首先需要确认你有运行这个文件的权限。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure><p>为了演示，我们创建了一个脚本，当它被执行之后，将在家目录下写入有特定信息的文件。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vim auto_run_script.sh</span><br><span class="line"> </span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="built_in">date</span> &gt;&gt; /home/alvin/output.txt</span><br><span class="line">hostname &gt;&gt; /home/alvin/output.txt</span><br></pre></td></tr></table></figure><p>保存退出后，再给它赋予可执行权限：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x auto_run_script.sh</span><br></pre></td></tr></table></figure><p>然后，我们再将脚本添加到 <code>/etc/rc.d/rc.local</code> 文件最后一行：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/rc.d/rc.local</span><br><span class="line"> </span><br><span class="line">/home/alvin/auto_run_script.sh</span><br></pre></td></tr></table></figure><p>接下来，我们就可以试试效果了。直接重启系统就可以了：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo reboot</span></span><br></pre></td></tr></table></figure><p>重启之后，就会在家目录下看到脚本执行的结果了。</p><p><img src="1ddea68a904c04ddf6ecea4cb804834e.jpeg" alt="img"></p><h2 id="方法二：使用-crontab"><a href="#方法二：使用-crontab" class="headerlink" title="方法二：使用 crontab"></a>方法二：使用 crontab</h2><p>大家知道，crontab 是 Linux 下的计划任务，当时间达到我们设定的时间时，可以自动触发某些脚本的运行。</p><p>我们可以自己设置计划任务时间，然后编写对应的脚本。但是，有个特殊的任务，叫作 <code>@reboot</code> ，我们其实也可以直接从它的字面意义看出来，这个任务就是在系统重启之后自动运行某个脚本。</p><p>那它将运行的是什么脚本呢？我们如何去设置这个脚本呢？我们可以通过 <code>crontab -e</code> 来设置。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">crontab -e</span></span><br><span class="line"> </span><br><span class="line">@reboot /home/alvin/auto_run_script.sh</span><br></pre></td></tr></table></figure><p>然后，直接重启即可。运行的效果跟上面类似。</p><h2 id="方法三：使用-systemd-服务"><a href="#方法三：使用-systemd-服务" class="headerlink" title="方法三：使用 systemd 服务"></a>方法三：使用 systemd 服务</h2><p>以上介绍的两种方法，在任何 Linux 系统上都可以使用。但本方法仅适用于 systemd 系统。</p><p>为了实现目的，我们需要创建一个 systemd 启动服务，并把它放置在 <code>/etc/systemd/system/</code> 目录下。</p><p>我们创建的 systemd 启动服务如下。请注意，这时后缀是 <code>.service</code> ，而不是 <code>.sh</code> 。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">vim auto_run_script.service</span></span><br><span class="line"> </span><br><span class="line">[Unit]</span><br><span class="line">Description=Run a Custom Script at Startup</span><br><span class="line">After=default.target</span><br><span class="line"> </span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/home/alvin/auto_run_script.sh</span><br><span class="line"> </span><br><span class="line">[Install]</span><br><span class="line">WantedBy=default.target</span><br></pre></td></tr></table></figure><p>从服务的内容可以看出来，我们最终还是会调用 /home/alvin/auto_run_script.sh 这个脚本。</p><p>然后，我们再把这个脚本放置在 <code>/etc/systemd/systerm/</code> 目录下，之后我们再运行下面两条命令来更新 systemd 配置文件，并启动服务。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">systemctl daemon-reload</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">systemctl <span class="built_in">enable</span> auto_run_script.service</span></span><br></pre></td></tr></table></figure><p>万事俱备之后，我们就可以重启系统啦。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">reboot</span></span><br></pre></td></tr></table></figure><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.cnblogs.com/yychuyu/p/13095732.html">Linux系统如何设置开机自动运行脚本？ - 良许Linux - 博客园 (cnblogs.com)</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> 开机自启动 </tag>
+            
+            <tag> systemd </tag>
+            
+            <tag> crontab </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Windows设置自己的程序开机自动启动</title>
+      <link href="/posts/1301a31d/"/>
+      <url>/posts/1301a31d/</url>
+      
+        <content type="html"><![CDATA[<p>Windows系统想要快速设置开机自动启动某个程序，可以使用以下几种方法设置：</p><h2 id="第一种：设置启动项-推荐"><a href="#第一种：设置启动项-推荐" class="headerlink" title="第一种：设置启动项(推荐)"></a>第一种：设置启动项(推荐)</h2><p>1.找到启动文件夹，我的是<code>C:\Users\ThinkPad\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code>，或者打开运行，输入<code>shell:startup</code>，回车，也可以快速打开启动文件夹。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x3cGtqaW8=,size_16,color_FFFFFF,t_70.png" alt="img"></p><p>2.拷贝需要开机启动的程序的快捷方式到此文件夹即可。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x3cGtqaW8=,size_16,color_FFFFFF,t_70-17105540196293.png" alt="img"></p><p>3.打开任务管理器-启动查看启动项。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x3cGtqaW8=,size_16,color_FFFFFF,t_70-17105540381136.png" alt="img"></p><p>这样就设置好了，下次计算机启动时，程序也会自动启动的。</p><h2 id="第二种：使用计划任务自启动"><a href="#第二种：使用计划任务自启动" class="headerlink" title="第二种：使用计划任务自启动"></a>第二种：使用计划任务自启动</h2><p>1.新建文本文件DebugStart.txt,打开写入以下内容：</p><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist|<span class="built_in">find</span> /i &quot;authSender.exe&quot; &amp;&amp; <span class="built_in">echo</span> started || <span class="built_in">start</span> &quot;&quot; &quot;D:\Debug\authSender.exe&quot;。</span><br></pre></td></tr></table></figure><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x3cGtqaW8=,size_16,color_FFFFFF,t_70-17105541552299.png" alt="img"></p><p>这条语句不能换行， authSender.exe 是程序名， “D:\Debug\authSender.exe”是此程序所在路径，tasklist|find /i “authSender.exe”是判断进程是否存在，程序是否已经开启，如未开启才会启动程序，然后改后缀名 .txt 为 .bat，双击即可启动程序。(可以在每条语句前使用 :: 来注释一条语句)，这种方法还可以批量启动不同程序，只需要在此文件中重启一行，按相同格式写第二个要启动的程序对应的语句即可。</p><p>2.进入任务计划程序窗口，创建任务。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x3cGtqaW8=,size_16,color_FFFFFF,t_70-171055419572812.png" alt="img"></p><p>接着选择触发器选项卡，选择新建，在第一栏开始任务处选择登录时（启动时开始任务需要管理员权限）或启动时（启动时开始任务需要管理员权限），点击确定。由于我们的 <code>bat</code>脚本有做判断，所以不用担心程序会启动多次。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x3cGtqaW8=,size_16,color_FFFFFF,t_70-171055421017315.png" alt="img"></p><p>在操作选项卡选择新建，并选择启动程序选项，以及在程序和脚本处选择刚才编写的.bat程序，点击确定，然后再点击确定（创建任务界面的确定）。</p><p><img src="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x3cGtqaW8=,size_16,color_FFFFFF,t_70-171055421951018.png" alt="img"></p><p>关闭页面，即可做到开机自动启动程序。</p><h2 id="第三种：添加服务自动运行"><a href="#第三种：添加服务自动运行" class="headerlink" title="第三种：添加服务自动运行"></a>第三种：添加服务自动运行</h2><p>1.开始—-运行—-<a href="https://so.csdn.net/so/search?q=cmd&amp;spm=1001.2101.3001.7020">cmd</a>—-回车，在弹出的窗体中输入如下命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc create Debug binPath= D:\Debug\authSender.exe start= auto</span><br></pre></td></tr></table></figure><p>其中Debug为将要创建的服务名。要删除创建的服务也很简单，使用以下命令即可：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc delete ServiceName</span><br></pre></td></tr></table></figure><p>2.打开控制面板—-管理工具—-服务（或者 开始—-运行—-<code>services.msc</code>—-确认）打开服务管理器，看看你创建的服务已经在里面了，至此，服务运行已创建完成。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/lwpkjio/article/details/85129507">Windows设置自己的程序开机自动启动_开机自启动-CSDN博客</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> windows </tag>
+            
+            <tag> 自动启动 </tag>
+            
+            <tag> 开机启动 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++项目目录结构</title>
       <link href="/posts/f6d25693/"/>
       <url>/posts/f6d25693/</url>
