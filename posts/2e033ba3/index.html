@@ -1,0 +1,598 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ffmpeg剪视频 | xd's blog</title><meta name="author" content="向东"><meta name="copyright" content="向东"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="自己用过的 将1：50开始之后的100s内容输出  1ffmpeg -ss 1:05 -i clannad.mp4 -t 100 -c:v copy -c:a copy output.mp4  将00：20开始之后的内容输出  1ffmpeg -ss 00:20 -i clannad.mp4 -c:v copy -c:a copy output.mp4  字幕加入到视频  1ffmpeg -i i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ffmpeg剪视频">
+<meta property="og:url" content="https://jinianyoushang.github.io/posts/2e033ba3/index.html">
+<meta property="og:site_name" content="xd&#39;s blog">
+<meta property="og:description" content="自己用过的 将1：50开始之后的100s内容输出  1ffmpeg -ss 1:05 -i clannad.mp4 -t 100 -c:v copy -c:a copy output.mp4  将00：20开始之后的内容输出  1ffmpeg -ss 00:20 -i clannad.mp4 -c:v copy -c:a copy output.mp4  字幕加入到视频  1ffmpeg -i i">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jinianyoushang.github.io/Gallery/acg/29.webp">
+<meta property="article:published_time" content="2024-04-26T02:45:54.000Z">
+<meta property="article:modified_time" content="2024-04-26T02:47:21.362Z">
+<meta property="article:author" content="向东">
+<meta property="article:tag" content="ffmpeg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jinianyoushang.github.io/Gallery/acg/29.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jinianyoushang.github.io/posts/2e033ba3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="fsKNfu0BETzeWU_BRosBbDyNJN34lJOtlISDA7eTGFw"/><meta name="baidu-site-verification" content="xxxxxxx"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?31cc86be966b0617d888d68725b93c95";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ffmpeg剪视频',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-26 10:47:21'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">55</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/Gallery/acg/29.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="xd's blog"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">xd's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ffmpeg剪视频</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-26T02:45:54.000Z" title="发表于 2024-04-26 10:45:54">2024-04-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-26T02:47:21.362Z" title="更新于 2024-04-26 10:47:21">2024-04-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="leancloud_visitors" id="/posts/2e033ba3/" data-flag-title="ffmpeg剪视频"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span class="leancloud-visitors-count"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/posts/2e033ba3/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/posts/2e033ba3/" itemprop="commentCount"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="自己用过的"><a href="#自己用过的" class="headerlink" title="自己用过的"></a>自己用过的</h2><ol>
+<li>将1：50开始之后的100s内容输出</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -ss 1:05 -i clannad.mp4 -t 100 -c:v copy -c:a copy output.mp4</span><br></pre></td></tr></table></figure>
+<ol>
+<li>将00：20开始之后的内容输出</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -ss 00:20 -i clannad.mp4 -c:v copy -c:a copy output.mp4</span><br></pre></td></tr></table></figure>
+<ol>
+<li>字幕加入到视频</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mkv -i subtitles.srt -c copy output.mkv</span><br></pre></td></tr></table></figure>
+<ol>
+<li>烧录像进字幕</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mkv -vf subtitles=subtitles.srt output.mkv</span><br><span class="line">#显卡加速</span><br><span class="line">ffmpeg -c:v h264_cuvid -i input.mkv -vf subtitles=subtitles.srt -c:v h264_nvenc output.mkv</span><br></pre></td></tr></table></figure>
+<ol>
+<li>提取字幕</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mkv output.srt</span><br></pre></td></tr></table></figure>
+<ol>
+<li>显卡加速</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mkv output.mp4</span><br><span class="line">ffmpeg  -y  -i 002-SpringBoot课程简介.avi -vcodec h264_nvenc  1.mp4</span><br></pre></td></tr></table></figure>
+<p><strong>硬编码后缀解释</strong></p>
+<ul>
+<li><code>qsv</code>：intel显卡的快速视频同步技术（quick sync video）</li>
+<li><code>nvenc</code>：nvidia显卡的硬件视频编码器（nvidia hardware video encoder）</li>
+<li><code>cuvid</code>：nvdec的旧称，只有解码端。</li>
+<li><code>cuda</code>： 同上</li>
+<li><code>amf</code>：amd显卡的amf硬件编码器（amd hardware encoder）</li>
+</ul>
+<blockquote>
+<p>基本上所有的Intel 电脑都支持qsv方式。</p>
+</blockquote>
+<h5 id="各种剪视频方式"><a href="#各种剪视频方式" class="headerlink" title="各种剪视频方式"></a>各种剪视频方式</h5><p>MP4</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">速度测试：</span><br><span class="line">ffmpeg  -y  -i 动态代理-01-日常生活中代理例子.avi  1.mp4</span><br><span class="line">cpu:15.2x</span><br><span class="line"></span><br><span class="line">ffmpeg  -y  -i 动态代理-01-日常生活中代理例子.avi -vcodec h264_nvenc 1.mp4</span><br><span class="line">h264_nvenc：23.8x</span><br><span class="line"></span><br><span class="line">使用 NVDEC 和 NVENC 进行全硬件转码：</span><br><span class="line">ffmpeg -y -hwaccel cuda -hwaccel_output_format cuda -i 动态代理-01-日常生活中代理例子.avi -c:v h264_nvenc  1.mp4</span><br><span class="line">cuda:24.5x</span><br></pre></td></tr></table></figure>
+<p>mkv(比较快)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">速度测试：</span><br><span class="line">ffmpeg  -y  -i 动态代理-01-日常生活中代理例子.avi  1.mkv</span><br><span class="line">cpu:36.8x</span><br><span class="line"></span><br><span class="line">ffmpeg  -y  -i 动态代理-01-日常生活中代理例子.avi -vcodec h264_nvenc 1.mkv</span><br><span class="line">h264_nvenc：81.4x</span><br><span class="line"></span><br><span class="line">使用 NVDEC 和 NVENC 进行全硬件转码：</span><br><span class="line">ffmpeg -y -hwaccel cuda -hwaccel_output_format cuda -i 动态代理-01-日常生活中代理例子.avi -c:v h264_nvenc  1.mkv</span><br><span class="line">cuda:83.6x</span><br></pre></td></tr></table></figure>
+<p>不同格式速度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg  -y  -i 动态代理-01-日常生活中代理例子.avi -vcodec h264_nvenc 1.mp4</span><br><span class="line">mp4:23.8x</span><br><span class="line"></span><br><span class="line">ffmpeg  -y  -i 动态代理-01-日常生活中代理例子.avi -vcodec h264_nvenc 1.mkv</span><br><span class="line">mkv:82.3x</span><br></pre></td></tr></table></figure>
+<p>文件大小</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkv:10044kb</span><br><span class="line">mp4:23108kb</span><br></pre></td></tr></table></figure>
+<h5 id="硬件加速命令"><a href="#硬件加速命令" class="headerlink" title="硬件加速命令"></a>硬件加速命令</h5><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -c:v h264_cuvid -i <span class="built_in">input</span>.mp4 -c:v h264_nvenc -b:v <span class="number">2048</span>k -s <span class="number">1920</span>x1080 <span class="built_in">output</span>.mp4</span><br></pre></td></tr></table></figure>
+<h6 id="常用命令参数解释"><a href="#常用命令参数解释" class="headerlink" title="常用命令参数解释"></a>常用命令参数解释</h6><ul>
+<li><code>-hwaccel cuvid</code>：使用<code>cuvid</code>进行硬件加速</li>
+<li><code>-c:v h264_cuvid</code>：使用<code>h264_cuvid</code>进行解码</li>
+<li><code>-c:v h264_nvenc</code>：使用<code>h264_nvenc</code>进行编码（nvidia硬件加速x265）</li>
+<li><code>-b:v 2000k</code>：比特率，值越大约清晰。</li>
+<li><code>-s 1920x1080</code>：分辨率</li>
+<li><code>-b:v 3500K</code>    ：视频平均比特率为 3500K</li>
+<li><code>-bufsize 6000K</code>：缓存区大小 6000K，建议设定为 当前码率<em>帧率</em>5，也许这里的2pass是针对缓冲区的，缓存未来5s</li>
+<li><code>-maxrate 5000K</code>：最大码率为 5000K，每帧的最高码率不超过这个数值</li>
+<li><code>-preset slow</code>：预设方案是 slow，slow已经是最好的选项了</li>
+<li><code>-pix_fmt p010le</code>：输出的像素格式是 p010le 也就10bit，只有新的硬件支持，例如：970m不支持，1070可以支持</li>
+</ul>
+<p>控制台播放视频：</p>
+<p>ffmpeg -i badapple.mp4 -pix_fmt rgb24 -f caca /dev/stdout</p>
+<h2 id="ffplay命令播放媒体"><a href="#ffplay命令播放媒体" class="headerlink" title="ffplay命令播放媒体"></a>ffplay命令播放媒体</h2><p>播放本地文件</p>
+<p>ffplay -window_title “test time” -ss 2 -t 10 -autoexit test.mp4</p>
+<p>ffplay buweishui.mp3</p>
+<p>播放网络流</p>
+<p>ffplay -window_title “rtmp stream” rtmp://202.69.69.180:443/webcast/bshdlive-pc</p>
+<p>强制解码器</p>
+<p>mpeg4解码器：ffplay -vcodec mpeg4 test.mp4</p>
+<p>h264解码器：ffplay -vcodec h264 test.mp4</p>
+<p>禁用音频或视频</p>
+<p>禁用音频：ffplay test.mp4 -an</p>
+<p>禁用视频：ffplay test.mp4 -vn</p>
+<p>播放YUV数据</p>
+<p>ffplay -pixel_format yuv420p -video_size 320x240 -framerate 5 yuv420p_320x240.yuv</p>
+<p>播放RGB数据</p>
+<p>ffplay -pixel_format rgb24 -video_size 320x240 -i rgb24_320x240.rgb</p>
+<p>ffplay -pixel_format rgb24 -video_size 320x240 -framerate 5 -i rgb24_320x240.rgb</p>
+<p>播放PCM数据</p>
+<p>ffplay -ar 48000 -ac 2 -f f32le 48000_2_f32le.pcm</p>
+<p>-ar set audio sampling rate (in Hz) (from 0 to INT_MAX) (default 0)</p>
+<p>-ac set number of audio channels (from 0 to INT_MAX) (default 0)</p>
+<h2 id="ffplay简单过滤器"><a href="#ffplay简单过滤器" class="headerlink" title="ffplay简单过滤器"></a>ffplay简单过滤器</h2><p>视频旋转</p>
+<p>ffplay -i test.mp4 -vf transpose=1</p>
+<p>视频反转</p>
+<p>ffplay test.mp4 -vf hflip</p>
+<p>ffplay test.mp4 -vf vflip</p>
+<p>视频旋转和反转</p>
+<p>ffplay test.mp4 -vf hflip,transpose=1</p>
+<p>音频变速播放</p>
+<p>ffplay -i test.mp4 -af atempo=2</p>
+<p>视频变速播放</p>
+<p>ffplay -i test.mp4 -vf setpts=PTS/2</p>
+<p>音视频同时变速</p>
+<p>ffplay -i test.mp4 -vf setpts=PTS/2 -af atempo=2</p>
+<h2 id="ffmpeg命令参数说明"><a href="#ffmpeg命令参数说明" class="headerlink" title="ffmpeg命令参数说明"></a>ffmpeg命令参数说明</h2><p><img src="v2-d34d10d4ef6669e8180edef9e83945fc_720w.jpg" alt="img"></p>
+<h2 id="ffmpeg命令-提取音视频数据"><a href="#ffmpeg命令-提取音视频数据" class="headerlink" title="ffmpeg命令 提取音视频数据"></a>ffmpeg命令 提取音视频数据</h2><p>保留封装格式</p>
+<p>ffmpeg -i test.mp4 -acodec copy -vn audio.mp4</p>
+<p>ffmpeg -i test.mp4 -vcodec copy -an video.mp4</p>
+<p>提取视频</p>
+<p>保留编码格式：ffmpeg -i test.mp4 -vcodec copy -an test_copy.h264</p>
+<p>强制格式：ffmpeg -i test.mp4 -vcodec libx264 -an test.h264</p>
+<p>提取音频</p>
+<p>保留编码格式：ffmpeg -i test.mp4 -acodec copy -vn test.aac</p>
+<p>强制格式：ffmpeg -i test.mp4 -acodec libmp3lame -vn test.mp3</p>
+<h2 id="ffmpeg命令提取像素格式和PCM数据"><a href="#ffmpeg命令提取像素格式和PCM数据" class="headerlink" title="ffmpeg命令提取像素格式和PCM数据"></a>ffmpeg命令提取像素格式和PCM数据</h2><p><strong>ffmpeg命令提取像素格式</strong></p>
+<p>提取YUV</p>
+<p>提取3秒数据，分辨率和源视频一致</p>
+<p>ffmpeg -i test_1280x720.mp4 -t 3 -pix_fmt yuv420p yuv420p_orig.yuv</p>
+<p>提取3秒数据，分辨率转为320x240</p>
+<p>ffmpeg -i test_1280x720.mp4 -t 3 -pix_fmt yuv420p -s 320x240 yuv420p_320x240.yuv</p>
+<p>提取RGB</p>
+<p>提取3秒数据，分辨率转为320x240</p>
+<p>ffmpeg -i test.mp4 -t 3 -pix_fmt rgb24 -s 320x240 rgb24_320x240.rgb</p>
+<p>RGB和YUV之间的转换</p>
+<p>ffmpeg -s 320x240 -pix_fmt yuv420p -i yuv420p_320x240.yuv -pix_fmt rgb24 rgb24_320x240_2.rgb</p>
+<p><strong>提取PCM</strong></p>
+<p>ffmpeg -i buweishui.mp3 -ar 48000 -ac 2 -f s16le 48000_2_s16le.pcm</p>
+<p>ffmpeg -i buweishui.mp3 -ar 48000 -ac 2 -sample_fmt s16 out_s16.wav</p>
+<p>ffmpeg -i buweishui.mp3 -ar 48000 -ac 2 -codec:a pcm_s16le out2_s16le.wav</p>
+<p>ffmpeg -i buweishui.mp3 -ar 48000 -ac 2 -f f32le 48000_2_f32le.pcm</p>
+<p>ffmpeg -i test.mp4 -t 10 -vn -ar 48000 -ac 2 -f f32le 48000_2_f32le_2.pcm</p>
+<h2 id="ffmpeg命令转封装"><a href="#ffmpeg命令转封装" class="headerlink" title="ffmpeg命令转封装"></a>ffmpeg命令转封装</h2><p><strong>ffmpeg命令转封装</strong></p>
+<p>保持编码格式：</p>
+<p>ffmpeg -i test.mp4 -vcodec copy -acodec copy test_copy.ts</p>
+<p>ffmpeg -i test.mp4 -codec copy test_copy2.ts</p>
+<p>改变编码格式：</p>
+<p>ffmpeg -i test.mp4 -vcodec libx265 -acodec libmp3lame out_h265_mp3.mkv</p>
+<p>修改帧率：</p>
+<p>ffmpeg -i test.mp4 -r 15 -codec copy output.mp4 (错误命令)</p>
+<p>ffmpeg -i test.mp4 -r 15 output2.mp4</p>
+<p>修改视频码率：</p>
+<p>ffmpeg -i test.mp4 -b 400k output_b.mkv （此时音频也被重新编码）</p>
+<p>修改视频码率：</p>
+<p>ffmpeg -i test.mp4 -b:v 400k output_bv.mkv</p>
+<p>修改音频码率：</p>
+<p>ffmpeg -i test.mp4 -b:a 192k output_ba.mp4</p>
+<p>如果不想重新编码video，需要加上-vcodec copy</p>
+<p>修改音视频码率：</p>
+<p>ffmpeg -i test.mp4 -b:v 400k -b:a 192k output_bva.mp4</p>
+<p>修改视频分辨率：</p>
+<p>ffmpeg -i test.mp4 -s 480x270 output_480x270.mp4</p>
+<p>修改音频采样率:</p>
+<p>ffmpeg -i test.mp4 -ar 44100 output_44100hz.mp4</p>
+<h2 id="ffmpeg命令过滤器"><a href="#ffmpeg命令过滤器" class="headerlink" title="ffmpeg命令过滤器"></a>ffmpeg命令过滤器</h2><p><strong>生成测试文件</strong></p>
+<p>找三个不同的视频每个视频截取10秒内容</p>
+<p>ffmpeg -i 沙海02.mp4 -ss 00:05:00 -t 10 -codec copy 1.mp4</p>
+<p>ffmpeg -i 复仇者联盟3.mp4 -ss 00:05:00 -t 10 -codec copy 2.mp4</p>
+<p>ffmpeg -i 红海行动.mp4 -ss 00:05:00 -t 10 -codec copy 3.mp4</p>
+<p>如果音视频格式不统一则强制统一为 -vcodec libx264 -acodec aac</p>
+<p>将上述1.mp4/2.mp4/3.mp4转成ts格式</p>
+<p>ffmpeg -i 1.mp4 -codec copy -vbsf h264_mp4toannexb 1.ts</p>
+<p>ffmpeg -i 2.mp4 -codec copy -vbsf h264_mp4toannexb 2.ts</p>
+<p>ffmpeg -i 3.mp4 -codec copy -vbsf h264_mp4toannexb 3.ts</p>
+<p>转成flv格式</p>
+<p>ffmpeg -i 1.mp4 -codec copy 1.flv</p>
+<p>ffmpeg -i 2.mp4 -codec copy 2.flv</p>
+<p>ffmpeg -i 3.mp4 -codec copy 3.flv</p>
+<p>分离某些封装格式（例如MP4/FLV/MKV等）中的H.264的时候，需要首先写入SPS和PPS，否则会导致分离出来的数据没有SPS、PPS而无法播放。H.264码流的SPS和PPS信息存储在AVCodecContext结构体的extradata中。需要使用ffmpeg中名称为“h264_mp4toannexb”的bitstream filter处理</p>
+<p><strong>开始拼接文件</strong></p>
+<p>以MP4格式进行拼接</p>
+<p>方法1：ffmpeg -i “concat:1.mp4|2.mp4|3.mp4” -codec copy out_mp4.mp4</p>
+<p>方法2：ffmpeg -f concat -i mp4list.txt -codec copy out_mp42.mp4</p>
+<p>以TS格式进行拼接</p>
+<p>方法1：ffmpeg -i “concat:1.ts|2.ts|3.ts” -codec copy out_ts.mp4</p>
+<p>方法2：ffmpeg -f concat -i tslist.txt -codec copy out_ts2.mp4</p>
+<p>以FLV格式进行拼接</p>
+<p>方法1：ffmpeg -i “concat:1.flv|2.flv|3.flv” -codec copy out_flv.mp4</p>
+<p>方法2：ffmpeg -f concat -i flvlist.txt -codec copy out_flv2.mp4</p>
+<p>方法1只适用部分封装格式，比如TS</p>
+<p>建议：</p>
+<p>（1）使用方法2进行拼接</p>
+<p>（2）转成TS格式再进行拼接</p>
+<p><strong>测试不同编码拼接</strong></p>
+<p>修改音频编码</p>
+<p>ffmpeg -i 2.mp4 -vcodec copy -acodec ac3 -vbsf h264_mp4toannexb 2.ts</p>
+<p>ffmpeg -i “concat:1.ts|2.ts|3.ts” -codec copy out1.mp4 结果第二段没有声音</p>
+<p>修改音频采样率</p>
+<p>ffmpeg -i 2.mp4 -vcodec copy -acodec aac -ar 96000 -vbsf h264_mp4toannexb 2.ts</p>
+<p>ffmpeg -i “concat:1.ts|2.ts|3.ts” -codec copy out2.mp4 第二段播放异常</p>
+<p>修改视频编码格式</p>
+<p>ffmpeg -i 1.mp4 -acodec copy -vcodec libx265 1.ts</p>
+<p>ffmpeg -i “concat:1.ts|2.ts|3.ts” -codec copy out3.mp4</p>
+<p>修改视频分辨率</p>
+<p>ffmpeg -i 1.mp4 -acodec copy -vcodec libx264 -s 800x472 -vbsf h264_mp4toannexb 1.ts</p>
+<p>ffmpeg -i “concat:1.ts|2.ts|3.ts” -codec copy out4.mp4</p>
+<p>注意：</p>
+<p>把每个视频封装格式也统一为ts，拼接输出的时候再输出你需要的封装格式，比如MP4</p>
+<p>视频分辨率可以不同，但是编码格式需要统一</p>
+<p>音频编码格式需要统一，音频参数(采样率/声道等)也需要统一</p>
+<h2 id="fmpeg命令图片与视频互转"><a href="#fmpeg命令图片与视频互转" class="headerlink" title="fmpeg命令图片与视频互转"></a>fmpeg命令图片与视频互转</h2><p>截取一张图片</p>
+<p>ffmpeg -i test.mp4 -y -f image2 -ss 00:00:02 -vframes 1 -s 640x360 test.jpg</p>
+<p>ffmpeg -i test.mp4 -y -f image2 -ss 00:00:02 -vframes 1 -s 640x360 test.bmp</p>
+<p>-i 输入</p>
+<p>-y 覆盖</p>
+<p>-f 格式 image2 一种格式</p>
+<p>-ss 起始值</p>
+<p>-vframes 帧 如果大于1 那么 输出加%03d test%03d.jpg</p>
+<p>-s 格式大小size</p>
+<p>转换视频为图片（每帧一张图):　　</p>
+<p>ffmpeg -i test.mp4 -t 5 -s 640x360 -r 15 frame%03d.jpg</p>
+<p>图片转换为视频:　　</p>
+<p>ffmpeg -f image2 -i frame%03d.jpg -r 25 video.mp4</p>
+<p>从视频中生成GIF图片</p>
+<p>ffmpeg -i test.mp4 -t 5 -r 1 image1.gif</p>
+<p>ffmpeg -i test.mp4 -t 5 -r 25 -s 640x360 image2.gif</p>
+<p>将 GIF 转化为 视频</p>
+<p>ffmpeg -f gif -i image2.gif image2.mp4</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ternence_hsu/article/details/104111073">ffmpeg可支持的编码器、解码器、封装格式、网络协议_Ternence_Hsu的博客-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/117523405">FFMPEG命令入门到提高，一篇文章就够了 - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013699869/article/details/48162417">[FFmpeg] Windows下使用ffmpeg为视频添加字幕_SunrayME的专栏-CSDN博客_ffmpeg添加字幕</a></p>
+<p><a target="_blank" rel="noopener" href="http://jdjx.run/index.php/archives/321/">使用 FFmpeg 为视频添加字幕 - Hello World (jdjx.run)</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://jinianyoushang.github.io">向东</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://jinianyoushang.github.io/posts/2e033ba3/">https://jinianyoushang.github.io/posts/2e033ba3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jinianyoushang.github.io" target="_blank">xd's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ffmpeg/">ffmpeg</a></div><div class="post_share"><div class="social-share" data-image="/Gallery/acg/29.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/38a918c7/" title="智能指针"><img class="cover" src="/Gallery/acg/50.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">智能指针</div></div></a></div><div class="next-post pull-right"><a href="/posts/e7a5d141/" title="C++工程：总结 CMake 添加第三方库依赖方式git submodule、 find_library、FetchContent、CPM等"><img class="cover" src="/Gallery/acg/34.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">C++工程：总结 CMake 添加第三方库依赖方式git submodule、 find_library、FetchContent、CPM等</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">向东</div><div class="author-info__description">xd's blog</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">55</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jinianyoushang"><i class="fab fa-github"></i><span>github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jinianyoushang" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:xd98@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is xd's blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%B7%B1%E7%94%A8%E8%BF%87%E7%9A%84"><span class="toc-number">1.</span> <span class="toc-text">自己用过的</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E5%89%AA%E8%A7%86%E9%A2%91%E6%96%B9%E5%BC%8F"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">各种剪视频方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F%E5%91%BD%E4%BB%A4"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">硬件加速命令</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A"><span class="toc-number">1.0.0.2.1.</span> <span class="toc-text">常用命令参数解释</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ffplay%E5%91%BD%E4%BB%A4%E6%92%AD%E6%94%BE%E5%AA%92%E4%BD%93"><span class="toc-number">2.</span> <span class="toc-text">ffplay命令播放媒体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ffplay%E7%AE%80%E5%8D%95%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">ffplay简单过滤器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ffmpeg%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-number">4.</span> <span class="toc-text">ffmpeg命令参数说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ffmpeg%E5%91%BD%E4%BB%A4-%E6%8F%90%E5%8F%96%E9%9F%B3%E8%A7%86%E9%A2%91%E6%95%B0%E6%8D%AE"><span class="toc-number">5.</span> <span class="toc-text">ffmpeg命令 提取音视频数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ffmpeg%E5%91%BD%E4%BB%A4%E6%8F%90%E5%8F%96%E5%83%8F%E7%B4%A0%E6%A0%BC%E5%BC%8F%E5%92%8CPCM%E6%95%B0%E6%8D%AE"><span class="toc-number">6.</span> <span class="toc-text">ffmpeg命令提取像素格式和PCM数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ffmpeg%E5%91%BD%E4%BB%A4%E8%BD%AC%E5%B0%81%E8%A3%85"><span class="toc-number">7.</span> <span class="toc-text">ffmpeg命令转封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ffmpeg%E5%91%BD%E4%BB%A4%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">8.</span> <span class="toc-text">ffmpeg命令过滤器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fmpeg%E5%91%BD%E4%BB%A4%E5%9B%BE%E7%89%87%E4%B8%8E%E8%A7%86%E9%A2%91%E4%BA%92%E8%BD%AC"><span class="toc-number">9.</span> <span class="toc-text">fmpeg命令图片与视频互转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">10.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/e7a5d141/" title="C++工程：总结 CMake 添加第三方库依赖方式git submodule、 find_library、FetchContent、CPM等"><img src="/Gallery/acg/34.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++工程：总结 CMake 添加第三方库依赖方式git submodule、 find_library、FetchContent、CPM等"/></a><div class="content"><a class="title" href="/posts/e7a5d141/" title="C++工程：总结 CMake 添加第三方库依赖方式git submodule、 find_library、FetchContent、CPM等">C++工程：总结 CMake 添加第三方库依赖方式git submodule、 find_library、FetchContent、CPM等</a><time datetime="2024-04-26T02:57:54.000Z" title="发表于 2024-04-26 10:57:54">2024-04-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2e033ba3/" title="ffmpeg剪视频"><img src="/Gallery/acg/29.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ffmpeg剪视频"/></a><div class="content"><a class="title" href="/posts/2e033ba3/" title="ffmpeg剪视频">ffmpeg剪视频</a><time datetime="2024-04-26T02:45:54.000Z" title="发表于 2024-04-26 10:45:54">2024-04-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/38a918c7/" title="智能指针"><img src="/Gallery/acg/50.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="智能指针"/></a><div class="content"><a class="title" href="/posts/38a918c7/" title="智能指针">智能指针</a><time datetime="2024-04-26T02:39:16.000Z" title="发表于 2024-04-26 10:39:16">2024-04-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/3af1ab35/" title="一行代码让vector自带下标范围检查"><img src="/Gallery/acg/11.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一行代码让vector自带下标范围检查"/></a><div class="content"><a class="title" href="/posts/3af1ab35/" title="一行代码让vector自带下标范围检查">一行代码让vector自带下标范围检查</a><time datetime="2024-04-26T02:32:55.000Z" title="发表于 2024-04-26 10:32:55">2024-04-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c50f0d51/" title="vcpkg清单模式指定安装版本"><img src="/Gallery/acg/53.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="vcpkg清单模式指定安装版本"/></a><div class="content"><a class="title" href="/posts/c50f0d51/" title="vcpkg清单模式指定安装版本">vcpkg清单模式指定安装版本</a><time datetime="2024-04-16T08:15:44.000Z" title="发表于 2024-04-16 16:15:44">2024-04-16</time></div></div></div></div></div></div></main><footer id="footer" style="background: RGBA(247,249,254,0.15)"><div id="footer-wrap"><div class="copyright">&copy;2024 By 向东</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'HzJfn7yNdjCarAoSsrO8b231-gzGzoHsz',
+      appKey: 'YdEKsuHXMC4NbtmlOT9Q0mot',
+      avatar: 'monsterid',
+      serverURLs: 'https://hzjfn7yn.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.19.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://hzjfn7yn.lc-cn-n1-shared.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'HzJfn7yNdjCarAoSsrO8b231-gzGzoHsz',
+        "X-LC-Key": 'YdEKsuHXMC4NbtmlOT9Q0mot',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

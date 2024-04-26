@@ -33,6 +33,83 @@
     
     
     <entry>
+      <title>ffmpeg剪视频</title>
+      <link href="/posts/2e033ba3/"/>
+      <url>/posts/2e033ba3/</url>
+      
+        <content type="html"><![CDATA[<h2 id="自己用过的"><a href="#自己用过的" class="headerlink" title="自己用过的"></a>自己用过的</h2><ol><li>将1：50开始之后的100s内容输出</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -ss 1:05 -i clannad.mp4 -t 100 -c:v copy -c:a copy output.mp4</span><br></pre></td></tr></table></figure><ol><li>将00：20开始之后的内容输出</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -ss 00:20 -i clannad.mp4 -c:v copy -c:a copy output.mp4</span><br></pre></td></tr></table></figure><ol><li>字幕加入到视频</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mkv -i subtitles.srt -c copy output.mkv</span><br></pre></td></tr></table></figure><ol><li>烧录像进字幕</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mkv -vf subtitles=subtitles.srt output.mkv</span><br><span class="line">#显卡加速</span><br><span class="line">ffmpeg -c:v h264_cuvid -i input.mkv -vf subtitles=subtitles.srt -c:v h264_nvenc output.mkv</span><br></pre></td></tr></table></figure><ol><li>提取字幕</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mkv output.srt</span><br></pre></td></tr></table></figure><ol><li>显卡加速</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mkv output.mp4</span><br><span class="line">ffmpeg  -y  -i 002-SpringBoot课程简介.avi -vcodec h264_nvenc  1.mp4</span><br></pre></td></tr></table></figure><p><strong>硬编码后缀解释</strong></p><ul><li><code>qsv</code>：intel显卡的快速视频同步技术（quick sync video）</li><li><code>nvenc</code>：nvidia显卡的硬件视频编码器（nvidia hardware video encoder）</li><li><code>cuvid</code>：nvdec的旧称，只有解码端。</li><li><code>cuda</code>： 同上</li><li><code>amf</code>：amd显卡的amf硬件编码器（amd hardware encoder）</li></ul><blockquote><p>基本上所有的Intel 电脑都支持qsv方式。</p></blockquote><h5 id="各种剪视频方式"><a href="#各种剪视频方式" class="headerlink" title="各种剪视频方式"></a>各种剪视频方式</h5><p>MP4</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">速度测试：</span><br><span class="line">ffmpeg  -y  -i 动态代理-01-日常生活中代理例子.avi  1.mp4</span><br><span class="line">cpu:15.2x</span><br><span class="line"></span><br><span class="line">ffmpeg  -y  -i 动态代理-01-日常生活中代理例子.avi -vcodec h264_nvenc 1.mp4</span><br><span class="line">h264_nvenc：23.8x</span><br><span class="line"></span><br><span class="line">使用 NVDEC 和 NVENC 进行全硬件转码：</span><br><span class="line">ffmpeg -y -hwaccel cuda -hwaccel_output_format cuda -i 动态代理-01-日常生活中代理例子.avi -c:v h264_nvenc  1.mp4</span><br><span class="line">cuda:24.5x</span><br></pre></td></tr></table></figure><p>mkv(比较快)</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">速度测试：</span><br><span class="line">ffmpeg  -y  -i 动态代理-01-日常生活中代理例子.avi  1.mkv</span><br><span class="line">cpu:36.8x</span><br><span class="line"></span><br><span class="line">ffmpeg  -y  -i 动态代理-01-日常生活中代理例子.avi -vcodec h264_nvenc 1.mkv</span><br><span class="line">h264_nvenc：81.4x</span><br><span class="line"></span><br><span class="line">使用 NVDEC 和 NVENC 进行全硬件转码：</span><br><span class="line">ffmpeg -y -hwaccel cuda -hwaccel_output_format cuda -i 动态代理-01-日常生活中代理例子.avi -c:v h264_nvenc  1.mkv</span><br><span class="line">cuda:83.6x</span><br></pre></td></tr></table></figure><p>不同格式速度</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg  -y  -i 动态代理-01-日常生活中代理例子.avi -vcodec h264_nvenc 1.mp4</span><br><span class="line">mp4:23.8x</span><br><span class="line"></span><br><span class="line">ffmpeg  -y  -i 动态代理-01-日常生活中代理例子.avi -vcodec h264_nvenc 1.mkv</span><br><span class="line">mkv:82.3x</span><br></pre></td></tr></table></figure><p>文件大小</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkv:10044kb</span><br><span class="line">mp4:23108kb</span><br></pre></td></tr></table></figure><h5 id="硬件加速命令"><a href="#硬件加速命令" class="headerlink" title="硬件加速命令"></a>硬件加速命令</h5><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -c:v h264_cuvid -i <span class="built_in">input</span>.mp4 -c:v h264_nvenc -b:v <span class="number">2048</span>k -s <span class="number">1920</span>x1080 <span class="built_in">output</span>.mp4</span><br></pre></td></tr></table></figure><h6 id="常用命令参数解释"><a href="#常用命令参数解释" class="headerlink" title="常用命令参数解释"></a>常用命令参数解释</h6><ul><li><code>-hwaccel cuvid</code>：使用<code>cuvid</code>进行硬件加速</li><li><code>-c:v h264_cuvid</code>：使用<code>h264_cuvid</code>进行解码</li><li><code>-c:v h264_nvenc</code>：使用<code>h264_nvenc</code>进行编码（nvidia硬件加速x265）</li><li><code>-b:v 2000k</code>：比特率，值越大约清晰。</li><li><code>-s 1920x1080</code>：分辨率</li><li><code>-b:v 3500K</code>    ：视频平均比特率为 3500K</li><li><code>-bufsize 6000K</code>：缓存区大小 6000K，建议设定为 当前码率<em>帧率</em>5，也许这里的2pass是针对缓冲区的，缓存未来5s</li><li><code>-maxrate 5000K</code>：最大码率为 5000K，每帧的最高码率不超过这个数值</li><li><code>-preset slow</code>：预设方案是 slow，slow已经是最好的选项了</li><li><code>-pix_fmt p010le</code>：输出的像素格式是 p010le 也就10bit，只有新的硬件支持，例如：970m不支持，1070可以支持</li></ul><p>控制台播放视频：</p><p>ffmpeg -i badapple.mp4 -pix_fmt rgb24 -f caca /dev/stdout</p><h2 id="ffplay命令播放媒体"><a href="#ffplay命令播放媒体" class="headerlink" title="ffplay命令播放媒体"></a>ffplay命令播放媒体</h2><p>播放本地文件</p><p>ffplay -window_title “test time” -ss 2 -t 10 -autoexit test.mp4</p><p>ffplay buweishui.mp3</p><p>播放网络流</p><p>ffplay -window_title “rtmp stream” rtmp://202.69.69.180:443/webcast/bshdlive-pc</p><p>强制解码器</p><p>mpeg4解码器：ffplay -vcodec mpeg4 test.mp4</p><p>h264解码器：ffplay -vcodec h264 test.mp4</p><p>禁用音频或视频</p><p>禁用音频：ffplay test.mp4 -an</p><p>禁用视频：ffplay test.mp4 -vn</p><p>播放YUV数据</p><p>ffplay -pixel_format yuv420p -video_size 320x240 -framerate 5 yuv420p_320x240.yuv</p><p>播放RGB数据</p><p>ffplay -pixel_format rgb24 -video_size 320x240 -i rgb24_320x240.rgb</p><p>ffplay -pixel_format rgb24 -video_size 320x240 -framerate 5 -i rgb24_320x240.rgb</p><p>播放PCM数据</p><p>ffplay -ar 48000 -ac 2 -f f32le 48000_2_f32le.pcm</p><p>-ar set audio sampling rate (in Hz) (from 0 to INT_MAX) (default 0)</p><p>-ac set number of audio channels (from 0 to INT_MAX) (default 0)</p><h2 id="ffplay简单过滤器"><a href="#ffplay简单过滤器" class="headerlink" title="ffplay简单过滤器"></a>ffplay简单过滤器</h2><p>视频旋转</p><p>ffplay -i test.mp4 -vf transpose=1</p><p>视频反转</p><p>ffplay test.mp4 -vf hflip</p><p>ffplay test.mp4 -vf vflip</p><p>视频旋转和反转</p><p>ffplay test.mp4 -vf hflip,transpose=1</p><p>音频变速播放</p><p>ffplay -i test.mp4 -af atempo=2</p><p>视频变速播放</p><p>ffplay -i test.mp4 -vf setpts=PTS/2</p><p>音视频同时变速</p><p>ffplay -i test.mp4 -vf setpts=PTS/2 -af atempo=2</p><h2 id="ffmpeg命令参数说明"><a href="#ffmpeg命令参数说明" class="headerlink" title="ffmpeg命令参数说明"></a>ffmpeg命令参数说明</h2><p><img src="v2-d34d10d4ef6669e8180edef9e83945fc_720w.jpg" alt="img"></p><h2 id="ffmpeg命令-提取音视频数据"><a href="#ffmpeg命令-提取音视频数据" class="headerlink" title="ffmpeg命令 提取音视频数据"></a>ffmpeg命令 提取音视频数据</h2><p>保留封装格式</p><p>ffmpeg -i test.mp4 -acodec copy -vn audio.mp4</p><p>ffmpeg -i test.mp4 -vcodec copy -an video.mp4</p><p>提取视频</p><p>保留编码格式：ffmpeg -i test.mp4 -vcodec copy -an test_copy.h264</p><p>强制格式：ffmpeg -i test.mp4 -vcodec libx264 -an test.h264</p><p>提取音频</p><p>保留编码格式：ffmpeg -i test.mp4 -acodec copy -vn test.aac</p><p>强制格式：ffmpeg -i test.mp4 -acodec libmp3lame -vn test.mp3</p><h2 id="ffmpeg命令提取像素格式和PCM数据"><a href="#ffmpeg命令提取像素格式和PCM数据" class="headerlink" title="ffmpeg命令提取像素格式和PCM数据"></a>ffmpeg命令提取像素格式和PCM数据</h2><p><strong>ffmpeg命令提取像素格式</strong></p><p>提取YUV</p><p>提取3秒数据，分辨率和源视频一致</p><p>ffmpeg -i test_1280x720.mp4 -t 3 -pix_fmt yuv420p yuv420p_orig.yuv</p><p>提取3秒数据，分辨率转为320x240</p><p>ffmpeg -i test_1280x720.mp4 -t 3 -pix_fmt yuv420p -s 320x240 yuv420p_320x240.yuv</p><p>提取RGB</p><p>提取3秒数据，分辨率转为320x240</p><p>ffmpeg -i test.mp4 -t 3 -pix_fmt rgb24 -s 320x240 rgb24_320x240.rgb</p><p>RGB和YUV之间的转换</p><p>ffmpeg -s 320x240 -pix_fmt yuv420p -i yuv420p_320x240.yuv -pix_fmt rgb24 rgb24_320x240_2.rgb</p><p><strong>提取PCM</strong></p><p>ffmpeg -i buweishui.mp3 -ar 48000 -ac 2 -f s16le 48000_2_s16le.pcm</p><p>ffmpeg -i buweishui.mp3 -ar 48000 -ac 2 -sample_fmt s16 out_s16.wav</p><p>ffmpeg -i buweishui.mp3 -ar 48000 -ac 2 -codec:a pcm_s16le out2_s16le.wav</p><p>ffmpeg -i buweishui.mp3 -ar 48000 -ac 2 -f f32le 48000_2_f32le.pcm</p><p>ffmpeg -i test.mp4 -t 10 -vn -ar 48000 -ac 2 -f f32le 48000_2_f32le_2.pcm</p><h2 id="ffmpeg命令转封装"><a href="#ffmpeg命令转封装" class="headerlink" title="ffmpeg命令转封装"></a>ffmpeg命令转封装</h2><p><strong>ffmpeg命令转封装</strong></p><p>保持编码格式：</p><p>ffmpeg -i test.mp4 -vcodec copy -acodec copy test_copy.ts</p><p>ffmpeg -i test.mp4 -codec copy test_copy2.ts</p><p>改变编码格式：</p><p>ffmpeg -i test.mp4 -vcodec libx265 -acodec libmp3lame out_h265_mp3.mkv</p><p>修改帧率：</p><p>ffmpeg -i test.mp4 -r 15 -codec copy output.mp4 (错误命令)</p><p>ffmpeg -i test.mp4 -r 15 output2.mp4</p><p>修改视频码率：</p><p>ffmpeg -i test.mp4 -b 400k output_b.mkv （此时音频也被重新编码）</p><p>修改视频码率：</p><p>ffmpeg -i test.mp4 -b:v 400k output_bv.mkv</p><p>修改音频码率：</p><p>ffmpeg -i test.mp4 -b:a 192k output_ba.mp4</p><p>如果不想重新编码video，需要加上-vcodec copy</p><p>修改音视频码率：</p><p>ffmpeg -i test.mp4 -b:v 400k -b:a 192k output_bva.mp4</p><p>修改视频分辨率：</p><p>ffmpeg -i test.mp4 -s 480x270 output_480x270.mp4</p><p>修改音频采样率:</p><p>ffmpeg -i test.mp4 -ar 44100 output_44100hz.mp4</p><h2 id="ffmpeg命令过滤器"><a href="#ffmpeg命令过滤器" class="headerlink" title="ffmpeg命令过滤器"></a>ffmpeg命令过滤器</h2><p><strong>生成测试文件</strong></p><p>找三个不同的视频每个视频截取10秒内容</p><p>ffmpeg -i 沙海02.mp4 -ss 00:05:00 -t 10 -codec copy 1.mp4</p><p>ffmpeg -i 复仇者联盟3.mp4 -ss 00:05:00 -t 10 -codec copy 2.mp4</p><p>ffmpeg -i 红海行动.mp4 -ss 00:05:00 -t 10 -codec copy 3.mp4</p><p>如果音视频格式不统一则强制统一为 -vcodec libx264 -acodec aac</p><p>将上述1.mp4/2.mp4/3.mp4转成ts格式</p><p>ffmpeg -i 1.mp4 -codec copy -vbsf h264_mp4toannexb 1.ts</p><p>ffmpeg -i 2.mp4 -codec copy -vbsf h264_mp4toannexb 2.ts</p><p>ffmpeg -i 3.mp4 -codec copy -vbsf h264_mp4toannexb 3.ts</p><p>转成flv格式</p><p>ffmpeg -i 1.mp4 -codec copy 1.flv</p><p>ffmpeg -i 2.mp4 -codec copy 2.flv</p><p>ffmpeg -i 3.mp4 -codec copy 3.flv</p><p>分离某些封装格式（例如MP4/FLV/MKV等）中的H.264的时候，需要首先写入SPS和PPS，否则会导致分离出来的数据没有SPS、PPS而无法播放。H.264码流的SPS和PPS信息存储在AVCodecContext结构体的extradata中。需要使用ffmpeg中名称为“h264_mp4toannexb”的bitstream filter处理</p><p><strong>开始拼接文件</strong></p><p>以MP4格式进行拼接</p><p>方法1：ffmpeg -i “concat:1.mp4|2.mp4|3.mp4” -codec copy out_mp4.mp4</p><p>方法2：ffmpeg -f concat -i mp4list.txt -codec copy out_mp42.mp4</p><p>以TS格式进行拼接</p><p>方法1：ffmpeg -i “concat:1.ts|2.ts|3.ts” -codec copy out_ts.mp4</p><p>方法2：ffmpeg -f concat -i tslist.txt -codec copy out_ts2.mp4</p><p>以FLV格式进行拼接</p><p>方法1：ffmpeg -i “concat:1.flv|2.flv|3.flv” -codec copy out_flv.mp4</p><p>方法2：ffmpeg -f concat -i flvlist.txt -codec copy out_flv2.mp4</p><p>方法1只适用部分封装格式，比如TS</p><p>建议：</p><p>（1）使用方法2进行拼接</p><p>（2）转成TS格式再进行拼接</p><p><strong>测试不同编码拼接</strong></p><p>修改音频编码</p><p>ffmpeg -i 2.mp4 -vcodec copy -acodec ac3 -vbsf h264_mp4toannexb 2.ts</p><p>ffmpeg -i “concat:1.ts|2.ts|3.ts” -codec copy out1.mp4 结果第二段没有声音</p><p>修改音频采样率</p><p>ffmpeg -i 2.mp4 -vcodec copy -acodec aac -ar 96000 -vbsf h264_mp4toannexb 2.ts</p><p>ffmpeg -i “concat:1.ts|2.ts|3.ts” -codec copy out2.mp4 第二段播放异常</p><p>修改视频编码格式</p><p>ffmpeg -i 1.mp4 -acodec copy -vcodec libx265 1.ts</p><p>ffmpeg -i “concat:1.ts|2.ts|3.ts” -codec copy out3.mp4</p><p>修改视频分辨率</p><p>ffmpeg -i 1.mp4 -acodec copy -vcodec libx264 -s 800x472 -vbsf h264_mp4toannexb 1.ts</p><p>ffmpeg -i “concat:1.ts|2.ts|3.ts” -codec copy out4.mp4</p><p>注意：</p><p>把每个视频封装格式也统一为ts，拼接输出的时候再输出你需要的封装格式，比如MP4</p><p>视频分辨率可以不同，但是编码格式需要统一</p><p>音频编码格式需要统一，音频参数(采样率/声道等)也需要统一</p><h2 id="fmpeg命令图片与视频互转"><a href="#fmpeg命令图片与视频互转" class="headerlink" title="fmpeg命令图片与视频互转"></a>fmpeg命令图片与视频互转</h2><p>截取一张图片</p><p>ffmpeg -i test.mp4 -y -f image2 -ss 00:00:02 -vframes 1 -s 640x360 test.jpg</p><p>ffmpeg -i test.mp4 -y -f image2 -ss 00:00:02 -vframes 1 -s 640x360 test.bmp</p><p>-i 输入</p><p>-y 覆盖</p><p>-f 格式 image2 一种格式</p><p>-ss 起始值</p><p>-vframes 帧 如果大于1 那么 输出加%03d test%03d.jpg</p><p>-s 格式大小size</p><p>转换视频为图片（每帧一张图):　　</p><p>ffmpeg -i test.mp4 -t 5 -s 640x360 -r 15 frame%03d.jpg</p><p>图片转换为视频:　　</p><p>ffmpeg -f image2 -i frame%03d.jpg -r 25 video.mp4</p><p>从视频中生成GIF图片</p><p>ffmpeg -i test.mp4 -t 5 -r 1 image1.gif</p><p>ffmpeg -i test.mp4 -t 5 -r 25 -s 640x360 image2.gif</p><p>将 GIF 转化为 视频</p><p>ffmpeg -f gif -i image2.gif image2.mp4</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/ternence_hsu/article/details/104111073">ffmpeg可支持的编码器、解码器、封装格式、网络协议_Ternence_Hsu的博客-CSDN博客</a></p><p><a href="https://zhuanlan.zhihu.com/p/117523405">FFMPEG命令入门到提高，一篇文章就够了 - 知乎 (zhihu.com)</a></p><p><a href="https://blog.csdn.net/u013699869/article/details/48162417">[FFmpeg] Windows下使用ffmpeg为视频添加字幕_SunrayME的专栏-CSDN博客_ffmpeg添加字幕</a></p><p><a href="http://jdjx.run/index.php/archives/321/">使用 FFmpeg 为视频添加字幕 - Hello World (jdjx.run)</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ffmpeg </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>智能指针</title>
+      <link href="/posts/38a918c7/"/>
+      <url>/posts/38a918c7/</url>
+      
+        <content type="html"><![CDATA[<h3 id="使用时机"><a href="#使用时机" class="headerlink" title="使用时机"></a>使用时机</h3><p>基本在原本new/delete成对出现的场合使用智能指针替代原始指针</p><h3 id="动态数组使用智能指针"><a href="#动态数组使用智能指针" class="headerlink" title="动态数组使用智能指针"></a>动态数组使用智能指针</h3><p><strong>c++17之前</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//指定 default_delete 作为释放规则</span><br><span class="line">std::shared_ptr&lt;int&gt; p6(new int[10], std::default_delete&lt;int[]&gt;());</span><br><span class="line">//或者</span><br><span class="line">std::shared_ptr&lt;int&gt; p7(new int[10], [](int* p) &#123;delete[]p; &#125;);</span><br><span class="line">//访问的时候要</span><br><span class="line">p6.get()[0]这样</span><br><span class="line"></span><br><span class="line">//使用</span><br><span class="line">std::shared_ptr&lt;int&gt; array = std::shared_ptr&lt;int&gt;(new int[10],</span><br><span class="line">default_delete&lt;int[]&gt;());</span><br><span class="line">//访问的时候要</span><br><span class="line">array.get()[0]这样</span><br><span class="line"></span><br><span class="line">//下面的写法也可以，如果可以推荐这样写</span><br><span class="line">std::shared_ptr&lt;int[]&gt; array = std::shared_ptr&lt;int[]&gt;(new int[10]());</span><br><span class="line">//直接可以访问</span><br><span class="line">array[0]</span><br></pre></td></tr></table></figure><p>不过这么做的缺点也是很明显的：</p><ol><li>我们想管理的值是int[]类型的，然而事实上传给模板参数的是int</li><li>需要显示提供delete functor</li><li>不能使用<code>std::make_shared</code>，无法保证异常安全</li><li>c++17前shared_ptr未提供<code>opreator[]</code>，所以当需要类似操作时不得不使用<code>sp3.get()[index]</code>的形式</li></ol><p><strong>c++17可以这样写</strong>（不知道为啥我的c++14也可以用这样的）</p><p><strong>我也推荐的方法</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">std::shared_ptr&lt;int[]&gt; sp3(new int[10]());</span><br><span class="line">//下面的写法也可以</span><br><span class="line">std::shared_ptr&lt;int[]&gt; array = std::shared_ptr&lt;int[]&gt;(new int[10]());</span><br><span class="line">cout&lt;&lt;sp3[5]&lt;&lt;endl;</span><br></pre></td></tr></table></figure><p>使用被极大得简化了，然而还是有点问题，那就是无法使用<code>std::make_shared</code>，而我们除非指定自己的delete functor，否则我们应该尽量使用<code>std::make_shared</code>。</p><p>或者使用<strong>unique_ptr</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unique_ptr&lt;int[]&gt; ptr = make_unique&lt;int[]&gt;(10);</span><br></pre></td></tr></table></figure><p>或者使用vector</p><p><strong>c++20可以这样写</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//管理有10个int元素的动态数组的shared_ptr</span><br><span class="line">auto sp3 = std::make_shared&lt;int[]&gt;(10);</span><br></pre></td></tr></table></figure><p>非常好用</p><h3 id="C-11-std-make-shared的优点"><a href="#C-11-std-make-shared的优点" class="headerlink" title="C++11_std::make_shared的优点"></a>C++11_std::make_shared的优点</h3><h4 id="shared-ptr维护引用计数需要的信息"><a href="#shared-ptr维护引用计数需要的信息" class="headerlink" title="shared_ptr维护引用计数需要的信息"></a>shared_ptr维护引用计数需要的信息</h4><ul><li>强引用, 用来记录当前有多少个存活的 shared_ptrs 正持有该对象. 共享的对象会在最后一个强引用离开的时候销毁( 也可能释放).</li><li>弱引用, 用来记录当前有多少个正在观察该对象的 weak_ptrs. 当最后一个弱引用离开的时候, 共享的内部信息控制块会被销毁和释放 (共享的对象也会被释放, 如果还没有释放的话).</li></ul><h4 id="使用原始的new函数创建shared-ptr"><a href="#使用原始的new函数创建shared-ptr" class="headerlink" title="使用原始的new函数创建shared_ptr"></a>使用原始的new函数创建shared_ptr</h4><ul><li>首先是原始的new分配了原始对象, 然后将这个对象传递给 shared_ptr (即使用 shared_ptr 的构造函数) , shared_ptr 对象只能单独的分配控制块。</li><li>控制块包含被指向对象的引用计数以及其他，也就是说，控制块的内存是在std::shared_ptr的构造函数中分配的。</li></ul><p><img src="4163397-bba22bc2e365d520.webp" alt="4163397-bba22bc2e365d520"></p><h4 id="使用make-shared创建shared-ptr"><a href="#使用make-shared创建shared-ptr" class="headerlink" title="使用make_shared创建shared_ptr"></a>使用make_shared创建shared_ptr</h4><ul><li>如果选择使用 make_shared 的话, 内存分配的动作, 可以一次性完成，因为std::make_shared申请一个单独的内存块来同时存放指向的对象和控制块，这减少了内存分配的次数, 而内存分配是代价很高的操作。</li><li>同时，使用std::make_shared消除了一些控制块需要记录的信息，减少了程序的总内存占用。</li></ul><p><img src="4163397-510c6d6692ca96af.webp" alt="4163397-510c6d6692ca96af"></p><h4 id="make-shared实现异常安全"><a href="#make-shared实现异常安全" class="headerlink" title="make_shared实现异常安全"></a>make_shared实现异常安全</h4><ul><li>在shared_ptr的使用过程中，不能在函数实参中创建shared_ptr，如下：</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Define</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">F</span><span class="params">(<span class="type">const</span> std::shared_ptr&lt;Lhs&gt;&amp; lhs, <span class="type">const</span> std::shared_ptr&lt;Rhs&gt;&amp; rhs)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ；</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Call</span></span><br><span class="line"><span class="built_in">F</span>(std::<span class="built_in">shared_ptr</span>&lt;Lhs&gt;(<span class="keyword">new</span> <span class="built_in">Lhs</span>(<span class="string">&quot;foo&quot;</span>)),std::<span class="built_in">shared_ptr</span>&lt;Rhs&gt;(<span class="keyword">new</span> <span class="built_in">Rhs</span>(<span class="string">&quot;bar&quot;</span>)));</span><br></pre></td></tr></table></figure><p>C++ 是不保证参数求值顺序, 以及内部表达式的求值顺序的, 所以可能的执行顺序如下:</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Lhs</span>(“foo”))</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Rhs</span>(“bar”))</span><br><span class="line">std::shared_ptr&lt;Lhs&gt;</span><br><span class="line">std::shared_ptr&lt;Rhs&gt;</span><br></pre></td></tr></table></figure><p>如果在第2步的时候，发生了异常，第一步申请的 Lhs 对象内存就泄露了，<br> 产生这个问题的核心在于, shared_ptr 没有立即获得裸指针，所以就有可能产生内存泄漏。当然，这个问题是可以这样解决：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> lhs = std::<span class="built_in">shared_ptr</span>&lt;Lhs&gt;(<span class="keyword">new</span> <span class="built_in">Lhs</span>(<span class="string">&quot;foo&quot;</span>));</span><br><span class="line"><span class="keyword">auto</span> rhs = std::<span class="built_in">shared_ptr</span>&lt;Rhs&gt;(<span class="keyword">new</span> <span class="built_in">Rhs</span>(<span class="string">&quot;bar&quot;</span>));</span><br><span class="line"><span class="built_in">F</span>(lhs, rhs);</span><br></pre></td></tr></table></figure><p><strong>但，最推荐的做法是</strong></p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">F</span>(std::<span class="built_in">make_shared</span>&lt;Lhs&gt;(<span class="string">&quot;foo&quot;</span>), std::<span class="built_in">make_shared</span>&lt;Rhs&gt;(<span class="string">&quot;bar&quot;</span>));</span><br></pre></td></tr></table></figure><p>因为，申请原始对象和将原始对象裸指针赋值给shared_ptr是在同一个执行序列里，失败的话一起失败，成功就一起成功，<strong>这样就能保住创建的原始对象裸指针能安全的存放到std::shared_ptr中</strong></p><h4 id="使用make-shared的缺点"><a href="#使用make-shared的缺点" class="headerlink" title="使用make_shared的缺点"></a>使用make_shared的缺点</h4><ul><li>创建的对象如果没有公有的构造函数时，make_shared无法使用。</li><li>使用make_shared内存可能无法及时回收，对内存要求要的场景需要注意。</li></ul><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>智能指针尽量不要指向vector容器类型，因为当vector扩容时，智能指针便不再生效，引起程序的崩溃或未定义的行为。</p><h3 id="new-int-10-和new-int-10-区别"><a href="#new-int-10-和new-int-10-区别" class="headerlink" title="new int[10]和new int[10]()区别"></a>new int[10]和new int[10]()区别</h3><p>new int[10]的值初始化后-1760269552 683 -1760296624 683 0 0 0 0 0 0不全为0；</p><p>new int[10]()初始化后0 0 0 0 0 0 0 0 0 0 全为0</p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.cnblogs.com/apocelipes/p/10346928.html">shared_ptr和动态数组 - apocelipes - 博客园 (cnblogs.com)</a></p><p><a href="http://c.biancheng.net/view/7898.html">C++11 shared_ptr智能指针（超级详细） (biancheng.net)</a></p><p><a href="https://www.jianshu.com/p/8f0a67e26a8a">C++11_std::make_shared的优点 - 简书 (jianshu.com)</a></p><p><a href="https://www.coder.work/article/837321">c++ - make_unique 和 make_shared 处理数组时的区别 - IT工具网 (coder.work)</a></p><p><a href="https://www.cyhone.com/articles/right-way-to-use-cpp-smart-pointer/">C++ 智能指针的正确使用方式 | 编程沉思录 (cyhone.com)</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 智能指针 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>一行代码让vector自带下标范围检查</title>
+      <link href="/posts/3af1ab35/"/>
+      <url>/posts/3af1ab35/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一行代码让vector自带下标范围检查"><a href="#一行代码让vector自带下标范围检查" class="headerlink" title="一行代码让vector自带下标范围检查"></a>一行代码让vector自带下标范围检查</h1><p><code>#include &lt;vector&gt;</code>前<code>#define _GLIBCXX_DEBUG</code>就行</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> _GLIBCXX_DEBUG</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; a&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">    <span class="keyword">auto</span> t = a[<span class="number">3</span>]; <span class="comment">// runtime error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>也可以在cmake传递参数<code>add_definitions(-D_GLIBCXX_DEBUG)</code>开启</p><h2 id="GLIBCXX-DEBUG说明"><a href="#GLIBCXX-DEBUG说明" class="headerlink" title="_GLIBCXX_DEBUG说明"></a>_GLIBCXX_DEBUG说明</h2><p><code>_GLIBCXX_DEBUG</code>是一个用于启用C++标准库的调试模式的宏定义。当定义了这个宏时，会启用GCC（GNU Compiler Collection）中libstdc++标准库的调试模式，该模式提供了一些额外的运行时检查来捕获一些常见的C++程序错误，如数组越界、迭代器失效等。</p><p>在使用<code>_GLIBCXX_DEBUG</code>时，编译器会对标准库的数据结构和操作进行更严格的检查，这可能会导致性能下降，但有助于发现和调试潜在的程序错误。</p><p>需要注意的是，使用<code>_GLIBCXX_DEBUG</code>会导致程序的执行速度变慢，并且会增加一些内存开销，因为额外的检查会增加程序的运行时负担。通常情况下，只有在调试阶段才会使用<code>_GLIBCXX_DEBUG</code>来帮助捕获和修复一些难以发现的错误。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vcpkg清单模式指定安装版本</title>
       <link href="/posts/c50f0d51/"/>
       <url>/posts/c50f0d51/</url>
@@ -340,9 +417,9 @@
       
         <tags>
             
-            <tag> redis </tag>
-            
             <tag> docker </tag>
+            
+            <tag> redis </tag>
             
             <tag> mysql </tag>
             
@@ -377,13 +454,13 @@
       
         <tags>
             
-            <tag> redis </tag>
-            
             <tag> docker </tag>
             
-            <tag> 镜像 </tag>
+            <tag> redis </tag>
             
             <tag> mysql </tag>
+            
+            <tag> 镜像 </tag>
             
         </tags>
       
@@ -460,9 +537,9 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> linux </tag>
+            
+            <tag> docker </tag>
             
             <tag> 追加端口 </tag>
             
@@ -516,9 +593,9 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> linux </tag>
+            
+            <tag> docker </tag>
             
             <tag> centos </tag>
             
@@ -547,9 +624,9 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> linux </tag>
+            
+            <tag> docker </tag>
             
             <tag> 镜像源 </tag>
             
@@ -576,9 +653,9 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> linux </tag>
+            
+            <tag> docker </tag>
             
             <tag> ubuntu </tag>
             
