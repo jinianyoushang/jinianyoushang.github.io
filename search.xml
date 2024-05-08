@@ -4,7 +4,36 @@
   
     
     <entry>
-      <title>cpp在ubuntu交叉编译</title>
+      <title>vscode通过ssh连接远程服务器+免密登录</title>
+      <link href="/posts/57e2079d/"/>
+      <url>/posts/57e2079d/</url>
+      
+        <content type="html"><![CDATA[<h3 id="vscode连接远程服务器"><a href="#vscode连接远程服务器" class="headerlink" title="vscode连接远程服务器"></a>vscode连接远程服务器</h3><p>1.在vscode下载Remote Development</p><p>2.点击远程<a href="https://so.csdn.net/so/search?q=资源管理器&amp;spm=1001.2101.3001.7020">资源管理器</a>选项卡，并选择远程(隧道/SSH)类别</p><p><img src="127a5fb100694767804c3ef3bd8670f5.png" alt="127a5fb100694767804c3ef3bd8670f5"></p><p>3.点击ssh配置</p><p><img src="f0f78a0f6a02449eac89cd32cdda813c.png" alt="f0f78a0f6a02449eac89cd32cdda813c"></p><p>4.在弹出的选择配置文件中，点击第一个</p><p>5.在config文件中输入以下内容</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host &lt;显示的服务器名字&gt;</span><br><span class="line">    HostName &lt;服务器的ip&gt;</span><br><span class="line">    Port 22</span><br><span class="line">    User &lt;ssh登录的用户名&gt;</span><br></pre></td></tr></table></figure><p>如下</p><p><img src="5434bf95a1b0482abfbc0ca529be0cd1.png" alt="5434bf95a1b0482abfbc0ca529be0cd1"></p><p> 6.这时展开SSH，就能看到刚刚创建的配置了</p><p><img src="47c82cee61004113be8b74f2be47589a.png" alt="47c82cee61004113be8b74f2be47589a"></p><p>点击连接，输入密码即可。</p><h3 id="ssh使用密钥连接"><a href="#ssh使用密钥连接" class="headerlink" title="ssh使用密钥连接"></a>ssh使用密钥连接</h3><ol><li><p><strong>本地生成SSH密钥对</strong>：如果你还没有SSH密钥对，可以使用<code>ssh-keygen</code>命令在本地生成一对密钥（公钥和私钥）。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></li><li><p><strong>复制公钥</strong>：使用<code>cat</code>命令或文本编辑器打开你的公钥文件（通常是<code>~/.ssh/id_rsa.pub</code>），并将公钥内容复制到剪贴板中。</p></li><li><p><strong>连接到Linux服务器</strong>：使用SSH连接到你的Linux服务器，可以使用以下命令：<code>--</code></p></li><li><p><strong>创建.ssh文件夹（如果不存在）</strong>：如果服务器上的<code>.ssh</code>文件夹不存在，你可以使用以下命令创建它：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.ssh</span><br></pre></td></tr></table></figure></li><li><p><strong>将公钥添加到authorized_keys文件</strong>：将你的公钥粘贴到服务器上的<code>authorized_keys</code>文件中。你可以使用文本编辑器将公钥添加到文件中，或者使用以下命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;your_public_key&quot; &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></li><li><p><strong>设置权限</strong>：确保<code>authorized_keys</code>文件的权限正确设置为<code>600</code>，这样只有拥有者才能读写该文件：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></li></ol><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/savet/article/details/131683156">vscode通过ssh连接远程服务器+免密登录（图文）_vscode ssh-CSDN博客</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ssh </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ssh </tag>
+            
+            <tag> 远程 </tag>
+            
+            <tag> vscode远程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>c++在ubuntu交叉编译</title>
       <link href="/posts/d50850af/"/>
       <url>/posts/d50850af/</url>
       
