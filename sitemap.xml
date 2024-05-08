@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jinianyoushang.github.io/posts/9c020798/</loc>
+    
+    <lastmod>2024-05-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jinianyoushang.github.io/posts/57e2079d/</loc>
     
     <lastmod>2024-05-08</lastmod>
@@ -893,6 +902,20 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://jinianyoushang.github.io/tags/git/</loc>
+    <lastmod>2024-05-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jinianyoushang.github.io/tags/github/</loc>
+    <lastmod>2024-05-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -981,6 +1004,13 @@
   
   <url>
     <loc>https://jinianyoushang.github.io/categories/osg/</loc>
+    <lastmod>2024-05-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jinianyoushang.github.io/categories/git/</loc>
     <lastmod>2024-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
