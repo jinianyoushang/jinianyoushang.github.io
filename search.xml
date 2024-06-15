@@ -297,11 +297,11 @@
       
         <tags>
             
+            <tag> cmake </tag>
+            
             <tag> C++ </tag>
             
             <tag> Qt </tag>
-            
-            <tag> cmake </tag>
             
         </tags>
       
@@ -640,9 +640,9 @@
       
         <tags>
             
-            <tag> C++ </tag>
-            
             <tag> cmake </tag>
+            
+            <tag> C++ </tag>
             
             <tag> UTF8 </tag>
             
@@ -694,9 +694,9 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> redis </tag>
+            
+            <tag> docker </tag>
             
             <tag> mysql </tag>
             
@@ -731,13 +731,13 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> redis </tag>
             
-            <tag> mysql </tag>
+            <tag> docker </tag>
             
             <tag> 镜像 </tag>
+            
+            <tag> mysql </tag>
             
         </tags>
       
@@ -1015,9 +1015,9 @@
       
         <tags>
             
-            <tag> Clion </tag>
-            
             <tag> C++ </tag>
+            
+            <tag> Clion </tag>
             
             <tag> vcpkg </tag>
             
@@ -1048,9 +1048,9 @@
       
         <tags>
             
-            <tag> Clion </tag>
-            
             <tag> C++ </tag>
+            
+            <tag> Clion </tag>
             
             <tag> Qt </tag>
             
