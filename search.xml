@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>c++32位64位下各种数据类型大小的对比</title>
+      <link href="/posts/565012e1/"/>
+      <url>/posts/565012e1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="32位64位下各种数据类型大小的对比"><a href="#32位64位下各种数据类型大小的对比" class="headerlink" title="32位64位下各种数据类型大小的对比"></a>32位64位下各种数据类型大小的对比</h1><h2 id="1-基本数据类型大小的对比"><a href="#1-基本数据类型大小的对比" class="headerlink" title="1.基本数据类型大小的对比"></a>1.基本数据类型大小的对比</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// C++Test.cpp : 定义控制台应用程序的入口点。  </span><br><span class="line">//  </span><br><span class="line">  </span><br><span class="line">#include &quot;stdafx.h&quot;  </span><br><span class="line">#include &lt;iostream&gt;  </span><br><span class="line">#include &lt;string&gt;  </span><br><span class="line">using namespace std;  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">//main  </span><br><span class="line">int _tmain(int argc, _TCHAR* argv[])  </span><br><span class="line">&#123;  </span><br><span class="line">    cout &lt;&lt; &quot;sizeof(char):&quot; &lt;&lt; sizeof(char) &lt;&lt; endl;  </span><br><span class="line">    cout &lt;&lt; &quot;sizeof(short):&quot; &lt;&lt; sizeof(short) &lt;&lt; endl;  </span><br><span class="line">    cout &lt;&lt; &quot;sizeof(int):&quot; &lt;&lt; sizeof(int) &lt;&lt; endl;  </span><br><span class="line">    cout &lt;&lt; &quot;sizeof(long):&quot; &lt;&lt; sizeof(long) &lt;&lt; endl;  </span><br><span class="line">    cout &lt;&lt; &quot;sizeof(long long):&quot; &lt;&lt; sizeof(long long) &lt;&lt; endl;  </span><br><span class="line">    cout &lt;&lt; &quot;sizeof(unsigned int):&quot; &lt;&lt; sizeof(unsigned int) &lt;&lt; endl;  </span><br><span class="line">    cout &lt;&lt; &quot;sizeof(float):&quot; &lt;&lt; sizeof(float) &lt;&lt; endl;  </span><br><span class="line">    cout &lt;&lt; &quot;sizeof(double):&quot; &lt;&lt; sizeof(double) &lt;&lt; endl;  </span><br><span class="line">    void* pointer;  </span><br><span class="line">    cout &lt;&lt; &quot;sizeof(pointer):&quot; &lt;&lt; sizeof(pointer) &lt;&lt; endl;  </span><br><span class="line">  </span><br><span class="line">    system(&quot;pause&quot;);  </span><br><span class="line">    return 0;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure><p>看一下结果：</p><p> WIN32下：</p><p>sizeof(char):1<br>sizeof(short):2<br>sizeof(int):4<br>sizeof(long):4<br>sizeof(long long):8<br>sizeof(unsigned int):4<br>sizeof(float):4<br>sizeof(double):8<br>sizeof(pointer):4</p><p>请按任意键继续. . .</p><p>x64下：</p><p>sizeof(char):1<br>sizeof(short):2<br>sizeof(int):4<br>sizeof(long):4<br>sizeof(long long):8<br>sizeof(unsigned int):4<br>sizeof(float):4<br>sizeof(double):8<br>sizeof(pointer):8</p><h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>结论：在win下有区别的只有指针类型长度</p><p>32位和64位系统在Windows下基本数据类型的大小都是一样的。只有指针的大小不一样！32位指针大小为4byte，而64位的指针大小为8byte。</p><p>注：Linux下，long型是64位的，这一点是和Windows不同的地方。</p><p>PS：64位系统下是可以运行32位程序的。但是反过来的话是运行不了的。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> c++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>完美解码播放杜比视界</title>
       <link href="/posts/bf7e1983/"/>
       <url>/posts/bf7e1983/</url>
